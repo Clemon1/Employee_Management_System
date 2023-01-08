@@ -1,0 +1,8 @@
+{
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "workbench.settings.openDefaultSettings": false,
+  "workbench.colorTheme": "Night Wolf (dark blue)",
+  "workbench.colorCustomizations": {},
+  "workbench.preferredDarkColorTheme": "Material Theme Ocean",
+  "workbench.preferredHighContrastColorTheme": "Material Theme Ocean"
+}

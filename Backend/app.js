@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const employeeRoutes = require("./routes/employeeRoutes");
+const departmentRoutes = require("./routes/departmentRoutes");
+const taskRoutes = require("./routes/taskRoutes");
+const leaveRoute = require("./routes/leaveRoutes");
 // MongoDB database Connection
 mongoose.connect("mongodb://0.0.0.0:27017/opeDB");
 const db = mongoose.connection;
@@ -19,5 +22,8 @@ app.use(express.static("uploads"));
 // Routes
 app.use("/auth", authRoutes);
 app.use("/employee", employeeRoutes);
+app.use("/department", departmentRoutes);
+app.use("/task", taskRoutes);
+app.use("/leave", leaveRoute);
 // Listen to PORT number
 app.listen(PORT, () => console.log(`Express app connected to port:${PORT}`));

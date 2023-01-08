@@ -11,13 +11,17 @@ import {
   Th,
   Td,
   Button,
-  TableCaption,
+  Icon,
   TableContainer,
 } from "@chakra-ui/react";
 import { useGetAllEmployeesQuery } from "../features/employeeSlice";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import moment from "moment";
 
 const Employees = () => {
   const [page, setPage] = useState(1);
@@ -46,7 +50,7 @@ const Employees = () => {
         <Box width={"100%"} height={"100vh"} padding={5}>
           <Box
             width={"100%"}
-            height={"fit-content"}
+            height={"80vh"}
             bg={"#ffffff"}
             padding={4}
             boxShadow={"lg"}
@@ -56,14 +60,19 @@ const Employees = () => {
               <Text color={"#051724"} fontSize={23} fontWeight={800}>
                 Employees
               </Text>
-
-              <Button bg={"#001f54"} color={"#ffffff"}>
-                Create
-              </Button>
+              <Link to='/employees/create'>
+                <Button bg={"#051724"} color={"#ffffff"}>
+                  Create
+                </Button>
+              </Link>
             </Flex>
 
-            <TableContainer color={"#06253b"}>
-              <Table variant='striped' colorScheme='teal'>
+            <TableContainer height={"78%"} color={"#06253b"}>
+              <Table
+                height={"fit-content"}
+                variant='striped'
+                colorScheme={"messenger"}
+              >
                 <Thead>
                   <Tr>
                     <Th>Profile Picture</Th>
@@ -71,6 +80,7 @@ const Employees = () => {
                     <Th>Email</Th>
                     <Th>Department</Th>
                     <Th>Date of Entry</Th>
+                    <Th>Details</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -83,9 +93,8 @@ const Employees = () => {
                   ) : (
                     employee &&
                     employee.allEmployees.map((employee) => (
-                      <Tr>
+                      <Tr key={employee._id}>
                         <Td>
-                          {" "}
                           <Avatar
                             src={`http://localhost:5000/empProfilePics/${employee.profile}`}
                             name={employee.fullname}
@@ -93,8 +102,22 @@ const Employees = () => {
                         </Td>
                         <Td>{employee.fullname}</Td>
                         <Td>{employee.email}</Td>
-                        <Td>Full-Stack Developer</Td>
-                        <Td>{employee.createdAt}</Td>
+                        <Td>{employee.department.name}</Td>
+                        <Td>
+                          {moment(employee.createdAt).format("DD MMM YYYY")}
+                        </Td>
+                        <Td>
+                          {" "}
+                          <Link to={`/employees/${employee._id}`}>
+                            <Button
+                              rounded={"full"}
+                              variant={"solid"}
+                              colorScheme={"blue"}
+                            >
+                              E
+                            </Button>
+                          </Link>
+                        </Td>
                       </Tr>
                     ))
                   )}
@@ -102,34 +125,50 @@ const Employees = () => {
                 <Tfoot></Tfoot>
               </Table>
             </TableContainer>
-            <Flex width={"100%"} gap={7} padding={2} alignItems={"center"}>
+            <Flex
+              width={"100%"}
+              justifyContent={"flex-end"}
+              gap={7}
+              padding={2}
+              alignItems={"center"}
+            >
               {" "}
               {page === 1 ? (
-                <Button disabled>Previous</Button>
+                <Button rounded={100} width={30} disabled>
+                  <Icon as={IoIosArrowBack} />
+                </Button>
               ) : (
                 <Button
                   bg={"#051724"}
+                  rounded={100}
+                  width={30}
                   color={"#ffffff"}
-                  _hover={{ bg: "#051724" }}
+                  _hover={{ bg: "#051724 !important" }}
                   onClick={() => setPage(page - 1)}
                   isLoading={isFetching}
                 >
-                  Previous
+                  <Icon as={IoIosArrowBack} />
                 </Button>
               )}
               <Text>
                 {page} / {totalPage}
               </Text>
               {page === totalPage ? (
-                <Button disabled>Next</Button>
+                <Button rounded={100} width={30} disabled>
+                  {" "}
+                  <Icon as={IoIosArrowForward} />
+                </Button>
               ) : (
                 <Button
                   bg={"#051724"}
+                  rounded={100}
+                  width={30}
                   color={"#ffffff"}
+                  _hover={{ bg: "#051724 !important" }}
                   onClick={() => setPage(page + 1)}
                   isLoading={isFetching}
                 >
-                  Next
+                  <Icon as={IoIosArrowForward} />
                 </Button>
               )}
             </Flex>

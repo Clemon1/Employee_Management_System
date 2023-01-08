@@ -10,7 +10,7 @@ import {
   Thead,
   Tbody,
   Avatar,
-  AvatarBadge,
+  Image,
   AvatarGroup,
   Tr,
   Th,
@@ -27,6 +27,8 @@ import { BsPeopleFill } from "react-icons/bs";
 import { MdTimeToLeave } from "react-icons/md";
 import { RiBuilding2Fill } from "react-icons/ri";
 import { useCountEmployeeQuery } from "../features/employeeSlice";
+import { useGetAllDepartmentQuery } from "../features/departmentSlice";
+import { useGetAllTaskQuery } from "../features/TaskSlide";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 import {
@@ -41,7 +43,11 @@ import {
   Filler,
   Legend,
 } from "chart.js";
+
 const Dashboard = () => {
+  const { data: employee, isError, isLoading } = useCountEmployeeQuery();
+  const { data: department } = useGetAllDepartmentQuery();
+  const { data: task } = useGetAllTaskQuery();
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -72,8 +78,8 @@ const Dashboard = () => {
     datasets: [
       {
         fill: true,
-        label: "Dataset 2",
-        data: [12, 19, 3, 5, 2, 3, 8],
+        label: "Number of Employees",
+        data: [20, 30, 60, 49, 38, 19],
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "#48cae4",
       },
@@ -85,7 +91,7 @@ const Dashboard = () => {
     datasets: [
       {
         label: "Employees",
-        data: [48, 19],
+        data: [employee && employee.findMale, employee && employee.findFemale],
         backgroundColor: ["#6411ad", "#ff4d6d"],
         borderColor: ["#6411ad", "#ff4d6d"],
         borderWidth: 1,
@@ -96,7 +102,6 @@ const Dashboard = () => {
       },
     ],
   };
-  const { data: employee, isError, isLoading } = useCountEmployeeQuery();
 
   console.log(employee);
   return (
@@ -122,7 +127,9 @@ const Dashboard = () => {
                 rounded={8}
               >
                 <Stat color={"#051724"}>
-                  <StatLabel fontSize={18}>Total Employees</StatLabel>
+                  <StatLabel fontWeight={700} fontSize={18}>
+                    Total Employees
+                  </StatLabel>
                   <StatNumber fontSize={30} fontWeight={700}>
                     {employee && employee.countEmp}
                   </StatNumber>
@@ -152,9 +159,11 @@ const Dashboard = () => {
                 boxShadow={"md"}
               >
                 <Stat color={"#051724"}>
-                  <StatLabel fontSize={18}>Total Task</StatLabel>
+                  <StatLabel fontWeight={700} fontSize={18}>
+                    Total Task
+                  </StatLabel>
                   <StatNumber fontSize={30} fontWeight={700}>
-                    58
+                    {task && task.countTotalTask}
                   </StatNumber>
                   <StatHelpText fontSize={16}>Assigned Tasks</StatHelpText>
                 </Stat>
@@ -178,9 +187,11 @@ const Dashboard = () => {
                 boxShadow={"md"}
               >
                 <Stat color={"#051724"}>
-                  <StatLabel fontSize={18}>Departments</StatLabel>
+                  <StatLabel fontWeight={700} fontSize={18}>
+                    Departments
+                  </StatLabel>
                   <StatNumber fontSize={30} fontWeight={700}>
-                    8
+                    {department && department.countDepartment}
                   </StatNumber>
                   <StatHelpText fontSize={16}>Total Department</StatHelpText>
                 </Stat>
@@ -208,7 +219,9 @@ const Dashboard = () => {
                 boxShadow={"md"}
               >
                 <Stat color={"#051724"}>
-                  <StatLabel fontSize={18}>Leave Request</StatLabel>
+                  <StatLabel fontWeight={700} fontSize={18}>
+                    Leave Request
+                  </StatLabel>
                   <StatNumber fontSize={30} fontWeight={700}>
                     19
                   </StatNumber>
@@ -296,6 +309,49 @@ const Dashboard = () => {
               boxShadow={"lg"}
             >
               <Doughnut data={Data} />
+              <Flex
+                position={"relative"}
+                top={"-220"}
+                width={150}
+                left={"90"}
+                bottom={0}
+                flexDirection={"column"}
+                zIndex={"2000 !important"}
+                gap={4}
+              >
+                <Flex gap={3} justifyContent={"center"} alignItems={"center"}>
+                  <Image
+                    borderRadius='full'
+                    boxSize='60px'
+                    src='https://cdn-icons-png.flaticon.com/512/236/236831.png'
+                    alt='Dan Abramov'
+                  />
+                  <Text
+                    fontSize={23}
+                    color={"#051724"}
+                    fontWeight={900}
+                    textAlign={"center"}
+                  >
+                    {employee && employee.findMale}
+                  </Text>
+                </Flex>
+                <Flex gap={3} justifyContent={"center"} alignItems={"center"}>
+                  <Image
+                    borderRadius='full'
+                    boxSize='60px'
+                    src='https://cdn-icons-png.flaticon.com/512/201/201634.png'
+                    alt='Dan Abramov'
+                  />
+                  <Text
+                    color={"#051724"}
+                    fontSize={23}
+                    fontWeight={900}
+                    textAlign={"center"}
+                  >
+                    {employee && employee.findFemale}
+                  </Text>
+                </Flex>
+              </Flex>
             </Box>
           </Flex>
         </Box>

@@ -8,6 +8,7 @@ const departmentSchema = new mongoose.Schema(
     },
     description: {
       type: String,
+      required: true,
     },
     teamLeader: {
       type: mongoose.Schema.Types.ObjectId,

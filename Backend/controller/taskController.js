@@ -4,8 +4,13 @@ const { Users } = require("../model/userModel");
 // Getting all the task
 const getAllTask = async (req, res) => {
   try {
-    const allTask = await Task.find();
-    res.status(200).json(allTask);
+    const allTask = await Task.find().populate("employee").exec();
+    const countPending = await Task.find({ completion: "Pending" }).count();
+    const countCompleted = await Task.find({ completion: "Completed" }).count();
+    const countTotalTask = await Task.find().count();
+    res
+      .status(200)
+      .json({ allTask, countPending, countCompleted, countTotalTask });
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -38,6 +43,27 @@ const viewTask = async (req, res) => {
 //Create and Assign task for Employee
 const createTask = async (req, res) => {
   try {
+    // Custom Validation
+    const {
+      title,
+      description,
+      dateAssigned,
+      dateToDeliver,
+      employee,
+      asignedBy,
+    } = req.body;
+    if (title === "") return res.status(404).json("Title cannot be empty");
+    if (description === "")
+      return res.status(404).json("Description cannot be empty");
+    if (dateAssigned === "")
+      return res.status(404).json("Date for the task must be assigned");
+    if (dateToDeliver === "")
+      return res.status(404).json("Date to deliver task must be assigned");
+    if (employee === "")
+      return res.status(404).json("An employee must be assigned");
+    if (asignedBy === "")
+      return res.status(404).json("Assign By cannot be empty");
+
     const tasks = new Task(req.body);
     const newTask = await tasks.save();
     res.status(200).json(newTask);
@@ -63,7 +89,7 @@ const updateTask = async (req, res) => {
 // Delete a single Task
 const deleteTask = async (req, res) => {
   try {
-    const deleteTask = await Task.findByIdAndDelete(req.params.id);
+    const delete_Task = await Task.findByIdAndDelete(req.params.id);
     res.status(200).json("Deleted Succesfully");
   } catch (err) {
     res.status(500).json(err.message);

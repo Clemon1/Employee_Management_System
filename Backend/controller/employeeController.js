@@ -9,12 +9,15 @@ const getAllEmployees = async (req, res) => {
   try {
     const { page = 1, limit = 4 } = req.query;
     const allEmployees = await Employees.find()
+      .populate("department")
       .limit(limit)
-      .skip((page - 1) * limit);
+      .skip((page - 1) * limit)
+      .exec();
     const total = await Employees.find().count();
     const totalPages = (await Employees.find().count()) / limit;
-    console.log(totalPages);
-    res.status(200).json({ allEmployees, total, totalPages });
+    const empAll = await Employees.find();
+
+    res.status(200).json({ allEmployees, total, totalPages, empAll });
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -25,14 +28,18 @@ const countEmployees = async (req, res) => {
   const countEmp = await Employees.find().count();
   const allEmp = await Employees.find();
   const latestEmp = await Employees.find().limit(4);
-
-  res.status(200).json({ countEmp, allEmp, latestEmp });
+  const findMale = await Employees.find({ gender: "Male" }).count();
+  const findFemale = await Employees.find({ gender: "Female" }).count();
+  res.status(200).json({ countEmp, allEmp, latestEmp, findMale, findFemale });
 };
 
 // Get a single Employee
 const getSingleEmployees = async (req, res) => {
   try {
-    const singleEmployees = await Employees.find(req.params.id);
+    const id = req.params.id;
+    const singleEmployees = await Employees.findById(id)
+      .populate("department")
+      .exec();
     res.status(200).json(singleEmployees);
   } catch (err) {
     res.status(500).json(err.message);
@@ -55,6 +62,9 @@ const createEmployee = async (req, res) => {
       email: req.body.email,
       password: hashPassword,
       profile: req.file.filename,
+      gender: req.body.gender,
+      department: req.body.department,
+      phoneNumber: req.body.phoneNumber,
     });
     const newUser = await user.save();
     res.status(200).json(newUser);
