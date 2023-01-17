@@ -38,23 +38,28 @@ const Navbar = () => {
     >
       <Flex width={"70%"}>
         <form onSubmit={handleSearch}>
-          <HStack
-            width={"42rem"}
-            p={1}
-            border={"1.99px #051724 solid"}
-            rounded={"2xl"}
-          >
+          <HStack width={"42rem"} border={"none"} borderRadius={22} spacing={0}>
             <Input
               placeholder='Search Employees'
               fontWeight={600}
-              rounded={"xl"}
-              border={"none !important"}
-              _focus={{ border: "none !important" }}
+              height={"48px"}
+              borderRadius={"22px 0px 0px 22px "}
+              width={"100%"}
+              border='2px #051724 solid!important'
+              _focus={{ border: "1px #051724 solid" }}
               outline={"none !important"}
               focusBorderColor='none!important'
               onChange={(e) => setKey(e.target.value)}
             />
-            <Button variant={"ghost"} color={"#051724"} type='submit'>
+            <Button
+              padding={"22px 19px"}
+              border='2px #051724 solid!important'
+              borderRadius={"0px 22px 22px 0px"}
+              variant={"ghost"}
+              bg={"#051724"}
+              color={"#ffffff"}
+              type='submit'
+            >
               <Icon as={BiSearch} fontSize={25} />
             </Button>
           </HStack>
