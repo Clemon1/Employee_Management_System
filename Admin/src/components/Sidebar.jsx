@@ -108,12 +108,12 @@ const Sidebar = () => {
           </ListItem>
         </NavLink>
         <NavLink
-          to='/jobs'
+          to='/attendance'
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <ListItem px={8} py={2} display={"flex"} gap={1}>
             <Icon alignSelf={"center"} fontSize={"24px"} as={FiBriefcase} />{" "}
-            Jobs
+            Attendance
           </ListItem>
         </NavLink>
         <NavLink

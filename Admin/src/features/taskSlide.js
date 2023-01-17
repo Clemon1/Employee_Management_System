@@ -7,7 +7,7 @@ export const taskAPi = createApi({
   endpoints: (builder) => ({
     // Get Task
     getAllTask: builder.query({
-      query: () => "/all",
+      query: (query) => `/all?completion=${query}`,
       providesTags: ["Task"],
     }),
     // Get Single Task

@@ -8,16 +8,16 @@ const {
   viewAllLeave,
 } = require("../controller/leaveController");
 
-router.get("/leave", viewAllLeave); // admin
+router.get("/", viewAllLeave); // admin
 
-router.get("/leave/employee", employeeLeave); // employee
+router.get("/employee", employeeLeave); // employee own Leave
 
-router.get("/leave/:id", singleLeave); // Single Employee
+router.get("/:id", singleLeave); // Single Leave
 
-router.post("/create", createLeave); // Create Employee
+router.post("/create", createLeave); // Create Leave
 
-router.put("/updateLeave", updateLeave); // Update Employee
+router.put("/:id", updateLeave); // Update Leave
 
-router.delete("/deleteLeave", deleteLeave); // Delete Employee
+router.delete("/:id", deleteLeave); // Delete Employee
 
 module.exports = router;

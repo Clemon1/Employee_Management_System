@@ -5,6 +5,7 @@ import {
   CardBody,
   Badge,
   Text,
+  Select,
   Button,
   Avatar,
 } from "@chakra-ui/react";
@@ -12,8 +13,12 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useGetAllTaskQuery } from "../features/TaskSlide";
+import { useState } from "react";
 const Task = () => {
-  const { data, isLoading, isError } = useGetAllTaskQuery();
+  const [query, setQuery] = useState("");
+  const { data, isLoading, isError } = useGetAllTaskQuery(query);
+  console.log(query);
+  console.log(data);
   return (
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
@@ -82,14 +87,35 @@ const Task = () => {
                 </Button>
               </Link>
             </Flex>
-
+            <Flex
+              width={"100%"}
+              px={10}
+              py={2}
+              gap={4}
+              justifyContent={"flex-end"}
+              alignItems={"center"}
+            >
+              <Text fontSize={18} fontWeight={700}>
+                Filter
+              </Text>
+              <Select
+                onChange={(e) => setQuery(e.target.value)}
+                width={150}
+                fontWeight={600}
+                border={"2px #051724 solid !important"}
+              >
+                <option value=''>All</option>
+                <option value='Pending'>Pending</option>
+                <option value='Completed'>Completed</option>
+              </Select>
+            </Flex>
             <Flex width={"100%"} wrap={"wrap"} justify={"flex-start"} gap={4}>
               {data &&
                 data.allTask.map((task) => (
                   <Card
                     key={task._id}
                     Card
-                    width={"20rem"}
+                    width={"20.8rem"}
                     rounded={"lg"}
                     bg={"#ffffff"}
                     boxShadow={"lg"}

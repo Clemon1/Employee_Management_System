@@ -2,9 +2,13 @@ const { leave } = require("../model/leaveModel");
 const { Employees } = require("../model/employeeModel");
 
 // Get Leave
-const viewAllLeave = async () => {
+const viewAllLeave = async (req, res) => {
   try {
-    const viewAll = await leave.find();
+    const viewAll = await leave
+      .find({})
+      .sort({ createdAt: -1 })
+      .populate("employee")
+      .exec();
     res.status(200).json(viewAll);
   } catch (err) {
     res.status(500).json(err.message);
@@ -33,7 +37,7 @@ const createLeave = async (req, res) => {
   }
 };
 // Find by ID
-const singleLeave = async () => {
+const singleLeave = async (req, res) => {
   try {
     const singleEmpLeave = await leave.findById(req.params.id);
     res.status(200).json(singleEmpLeave);

@@ -4,13 +4,22 @@ import {
   Button,
   Text,
   Avatar,
+  Icon,
   Flex,
   Switch,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { BiSearch } from "react-icons/bi";
 const Navbar = () => {
   const User = useSelector((state) => state.auth.User);
+  const [key, setKey] = useState("");
+  const navigate = useNavigate();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search/${key}`);
+  };
 
   return (
     <HStack
@@ -28,7 +37,28 @@ const Navbar = () => {
       py={4}
     >
       <Flex width={"70%"}>
-        <Input placeholder='Search Employees'></Input>
+        <form onSubmit={handleSearch}>
+          <HStack
+            width={"42rem"}
+            p={1}
+            border={"1.99px #051724 solid"}
+            rounded={"2xl"}
+          >
+            <Input
+              placeholder='Search Employees'
+              fontWeight={600}
+              rounded={"xl"}
+              border={"none !important"}
+              _focus={{ border: "none !important" }}
+              outline={"none !important"}
+              focusBorderColor='none!important'
+              onChange={(e) => setKey(e.target.value)}
+            />
+            <Button variant={"ghost"} color={"#051724"} type='submit'>
+              <Icon as={BiSearch} fontSize={25} />
+            </Button>
+          </HStack>
+        </form>
       </Flex>
       <Flex width={"30%"} gap={8} alignItems={"center"}>
         <Switch colorScheme='teal' size='lg' />

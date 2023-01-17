@@ -10,6 +10,10 @@ export const employeeApi = createApi({
       query: (page = 1) => `all?page=${page}`,
       providesTags: ["Employee"],
     }),
+    getSearchEmployees: builder.query({
+      query: (key) => `search/${key}`,
+      providesTags: ["Employee"],
+    }),
     countEmployee: builder.query({
       query: () => `count`,
       providesTags: ["Employee"],
@@ -37,4 +41,5 @@ export const {
   useCountEmployeeQuery,
   useGetSingleEmployeeQuery,
   useAddEmployeeMutation,
+  useGetSearchEmployeesQuery,
 } = employeeApi;

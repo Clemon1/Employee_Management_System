@@ -29,7 +29,7 @@ import { RiBuilding2Fill } from "react-icons/ri";
 import { useCountEmployeeQuery } from "../features/employeeSlice";
 import { useGetAllDepartmentQuery } from "../features/departmentSlice";
 import { useGetAllTaskQuery } from "../features/TaskSlide";
-
+import { useGetAllLeaveQuery } from "../features/LeaveSlide";
 ChartJS.register(ArcElement, Tooltip, Legend);
 import {
   Chart as ChartJS,
@@ -48,6 +48,7 @@ const Dashboard = () => {
   const { data: employee, isError, isLoading } = useCountEmployeeQuery();
   const { data: department } = useGetAllDepartmentQuery();
   const { data: task } = useGetAllTaskQuery();
+  const { data: leave } = useGetAllLeaveQuery();
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -223,7 +224,7 @@ const Dashboard = () => {
                     Leave Request
                   </StatLabel>
                   <StatNumber fontSize={30} fontWeight={700}>
-                    19
+                    {leave && leave.length}
                   </StatNumber>
                   <StatHelpText fontSize={16}>Employee leave</StatHelpText>
                 </Stat>

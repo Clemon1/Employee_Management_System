@@ -8,6 +8,7 @@ const {
   createEmployee,
   countEmployees,
   loginEmployee,
+  searchEmp,
   updateEmployee,
   deleteEmployee,
 } = require("../controller/employeeController");
@@ -25,8 +26,11 @@ const upload = multer({ storage });
 //Get all Employees
 router.get("/all", getAllEmployees);
 
+// Search Employee
+router.get("/search/:key", searchEmp);
 // Count Employees
 router.get("/count", countEmployees);
+
 // Get single Employee
 router.get("/:id", getSingleEmployees);
 //Create new Employee

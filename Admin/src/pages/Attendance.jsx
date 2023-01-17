@@ -1,7 +1,7 @@
 import { Flex, Box } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-const Jobs = () => {
+const Attendance = () => {
   return (
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
@@ -14,11 +14,18 @@ const Jobs = () => {
         <Navbar />
 
         <Box width={"100%"} height={"100vh"} padding={5}>
-          <h2> Jobs</h2>
+          <Box
+            width={"100%"}
+            height={"100%"}
+            bg={"#ffffff"}
+            padding={4}
+            boxShadow={"lg"}
+            rounded={5}
+          ></Box>
         </Box>
       </Box>
     </Flex>
   );
 };
 
-export default Jobs;
+export default Attendance;

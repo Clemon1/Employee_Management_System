@@ -10,8 +10,9 @@ const getAllEmployees = async (req, res) => {
     const { page = 1, limit = 4 } = req.query;
     const allEmployees = await Employees.find()
       .populate("department")
-      .limit(limit)
+      .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
+      .limit(limit)
       .exec();
     const total = await Employees.find().count();
     const totalPages = (await Employees.find().count()) / limit;
@@ -27,7 +28,10 @@ const getAllEmployees = async (req, res) => {
 const countEmployees = async (req, res) => {
   const countEmp = await Employees.find().count();
   const allEmp = await Employees.find();
-  const latestEmp = await Employees.find().limit(4);
+  const latestEmp = await Employees.find()
+    .populate("department")
+    .sort({ createdAt: -1 })
+    .limit(4);
   const findMale = await Employees.find({ gender: "Male" }).count();
   const findFemale = await Employees.find({ gender: "Female" }).count();
   res.status(200).json({ countEmp, allEmp, latestEmp, findMale, findFemale });
@@ -41,6 +45,25 @@ const getSingleEmployees = async (req, res) => {
       .populate("department")
       .exec();
     res.status(200).json(singleEmployees);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+// Search Employee
+const searchEmp = async (req, res) => {
+  try {
+    const search = req.params.key;
+    const searchEmployee = await Employees.find({
+      $or: [
+        { fullname: { $regex: search, $options: "i" } },
+        { email: { $regex: search, $options: "i" } },
+      ],
+    }).populate("department");
+    if (!searchEmployee) {
+      res.status(400).json("");
+    }
+    res.status(200).json(searchEmployee);
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -125,6 +148,7 @@ module.exports = {
   getAllEmployees,
   getSingleEmployees,
   createEmployee,
+  searchEmp,
   loginEmployee,
   countEmployees,
   updateEmployee,

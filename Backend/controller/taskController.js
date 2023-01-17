@@ -4,7 +4,17 @@ const { Users } = require("../model/userModel");
 // Getting all the task
 const getAllTask = async (req, res) => {
   try {
-    const allTask = await Task.find().populate("employee").exec();
+    const completion = req.query.completion;
+    completion === ""
+      ? (allTask = await Task.find()
+          .populate("employee")
+          .sort({ createdAt: -1 })
+          .exec())
+      : (allTask = await Task.find({ completion })
+          .populate("employee")
+          .sort({ createdAt: -1 })
+          .exec());
+
     const countPending = await Task.find({ completion: "Pending" }).count();
     const countCompleted = await Task.find({ completion: "Completed" }).count();
     const countTotalTask = await Task.find().count();
@@ -52,17 +62,15 @@ const createTask = async (req, res) => {
       employee,
       asignedBy,
     } = req.body;
-    if (title === "") return res.status(404).json("Title cannot be empty");
-    if (description === "")
+    if (!title) return res.status(404).json("Title cannot be empty");
+    if (!description)
       return res.status(404).json("Description cannot be empty");
-    if (dateAssigned === "")
+    if (!dateAssigned)
       return res.status(404).json("Date for the task must be assigned");
-    if (dateToDeliver === "")
+    if (!dateToDeliver)
       return res.status(404).json("Date to deliver task must be assigned");
-    if (employee === "")
-      return res.status(404).json("An employee must be assigned");
-    if (asignedBy === "")
-      return res.status(404).json("Assign By cannot be empty");
+    if (!employee) return res.status(404).json("An employee must be assigned");
+    if (!asignedBy) return res.status(404).json("Assign By cannot be empty");
 
     const tasks = new Task(req.body);
     const newTask = await tasks.save();

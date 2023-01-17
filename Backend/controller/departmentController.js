@@ -8,7 +8,7 @@ const getAllDepartment = async (req, res) => {
     const skip = limit * (page - 1);
     const alldepartment = await department
       .find()
-      .sort("createdAt:-1")
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
       .exec();
