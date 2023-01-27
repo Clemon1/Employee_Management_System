@@ -53,7 +53,7 @@ const Search = () => {
                   <Card
                     key={emp._id}
                     width={"15.2rem"}
-                    rounded={"lg"}
+                    borderRadius={"33% 1%"}
                     bg={"#ffffff"}
                     boxShadow={"lg"}
                   >

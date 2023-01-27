@@ -6,6 +6,7 @@ import {
   Button,
   Image,
   Select,
+  useToast,
   Icon,
   FormControl,
   FormLabel,
@@ -30,7 +31,7 @@ const CreateEmployee = () => {
   const [phoneNumber, setPhoneNumber] = useState(0);
   const [department, setSetDepartment] = useState("");
   const [password, setPassword] = useState("");
-
+  const toast = useToast();
   const navigate = useNavigate();
   const body = {
     fullname,
@@ -60,11 +61,26 @@ const CreateEmployee = () => {
       }
       console.log(formData);
       console.log(body);
-      await addEmployee(formData);
+      await addEmployee(formData).unwrap();
       navigate("/employees");
-      console.log(addEmployee);
+      toast({
+        title: "New Employee Added",
+        position: "top-right",
+        variant: "left-accent",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
     } catch (error) {
       console.log(error);
+      toast({
+        title: error.data,
+        position: "top-right",
+        variant: "left-accent",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
     }
   };
 

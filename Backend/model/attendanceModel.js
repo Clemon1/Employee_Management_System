@@ -2,18 +2,16 @@ const mongoose = require("mongoose");
 
 const attendanceSchema = new mongoose.Schema(
   {
-    employee: [
-      {
-        staff: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Employees",
-        },
-        attendance: {
-          type: String,
-          enum: ["Present", "Absent"],
-        },
-      },
-    ],
+    staff: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Employees",
+    },
+    startDate: Date,
+    endDate: Date,
+    attendance: {
+      type: String,
+      enum: ["Present", "Absent"],
+    },
     date: {
       type: Date,
       default: Date.now(),

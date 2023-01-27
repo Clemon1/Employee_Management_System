@@ -94,8 +94,16 @@ const SingleDepartment = () => {
                   <Spinner thickness='4px' color='blue.500' size='xl' />
                 </Flex>
               )}
+
+              {data && data.empDept.length === 0 && (
+                <Flex justify={"center"} width={"100%"}>
+                  <Text fontSize={26} fontWeight={500}>
+                    No Employee has been assinged
+                  </Text>
+                </Flex>
+              )}
               <Flex width={"100%"} gap={7}>
-                {data && data.empDept ? (
+                {data &&
                   data.empDept.map((department) => (
                     <Card
                       width={250}
@@ -129,19 +137,7 @@ const SingleDepartment = () => {
                         </Text>
                       </HStack>
                     </Card>
-                  ))
-                ) : (
-                  <Flex
-                    z-zIndex={3000}
-                    position='relative'
-                    top={"-50px"}
-                    width={"100%"}
-                  >
-                    <Text fontSize={26} fontWeight={500}>
-                      No Employee has been assinged to this department
-                    </Text>
-                  </Flex>
-                )}
+                  ))}
               </Flex>
 
               {isError && (

@@ -46,7 +46,7 @@ const Navbar = () => {
               borderRadius={"22px 0px 0px 22px "}
               width={"100%"}
               border='2px #051724 solid!important'
-              _focus={{ border: "1px #051724 solid" }}
+              _focus={{ border: "0px #051724 solid" }}
               outline={"none !important"}
               focusBorderColor='none!important'
               onChange={(e) => setKey(e.target.value)}
@@ -57,6 +57,7 @@ const Navbar = () => {
               borderRadius={"0px 22px 22px 0px"}
               variant={"ghost"}
               bg={"#051724"}
+              _hover={{ background: "#051724" }}
               color={"#ffffff"}
               type='submit'
             >

@@ -10,6 +10,7 @@ const departmentRoutes = require("./routes/departmentRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const leaveRoute = require("./routes/leaveRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
+
 // MongoDB database Connection
 mongoose.connect("mongodb://0.0.0.0:27017/opeDB");
 const db = mongoose.connection;
@@ -27,5 +28,6 @@ app.use("/department", departmentRoutes);
 app.use("/task", taskRoutes);
 app.use("/leave", leaveRoute);
 app.use("/attendance", attendanceRoutes);
+
 // Listen to PORT number
 app.listen(PORT, () => console.log(`Express app connected to port:${PORT}`));

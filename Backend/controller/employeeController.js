@@ -2,6 +2,7 @@ const { Employees } = require("../model/employeeModel");
 const bcrypt = require("bcrypt");
 const { Task } = require("../model/taskModel");
 const fs = require("fs");
+const { profile } = require("console");
 
 // Get all Employees
 
@@ -72,12 +73,28 @@ const searchEmp = async (req, res) => {
 //Create an Account for Employees
 const createEmployee = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, fullname, password, gender, department, phoneNumber } =
+      req.body;
+    const { profile } = req.file.filename;
+    if (
+      (!email,
+      !fullname,
+      !profile,
+      !password,
+      !gender,
+      !department,
+      !phoneNumber)
+    ) {
+      return res
+        .status(400)
+        .json("Details must be complete to register Employee");
+    }
     const existingEmail = await Employees.findOne({ email });
     if (existingEmail) {
       // Checking for existing Email on database to avoid registering with same email
       return res.status(400).json("This user has an account");
     }
+
     const salt = await bcrypt.genSalt(12);
     const hashPassword = await bcrypt.hash(req.body.password, salt); // Hashing the password
     const user = new Employees({
@@ -90,6 +107,7 @@ const createEmployee = async (req, res) => {
       phoneNumber: req.body.phoneNumber,
     });
     const newUser = await user.save();
+
     res.status(200).json(newUser);
   } catch (err) {
     res.status(500).json(err.message);
