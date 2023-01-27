@@ -77,13 +77,13 @@ const createEmployee = async (req, res) => {
       req.body;
     const { profile } = req.file.filename;
     if (
-      (!email,
-      !fullname,
-      !profile,
-      !password,
-      !gender,
-      !department,
-      !phoneNumber)
+      !email ||
+      !fullname ||
+      !profile ||
+      !password ||
+      !gender ||
+      !department ||
+      !phoneNumber
     ) {
       return res
         .status(400)
