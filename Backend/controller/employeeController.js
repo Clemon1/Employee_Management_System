@@ -75,11 +75,10 @@ const createEmployee = async (req, res) => {
   try {
     const { email, fullname, password, gender, department, phoneNumber } =
       req.body;
-    const { profile } = req.file.filename;
+
     if (
       !email ||
       !fullname ||
-      !profile ||
       !password ||
       !gender ||
       !department ||
