@@ -25,10 +25,37 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         } else return [{ type: "Task", id: "List" }];
       },
     }),
+    getTasksByUserId: builder.query({
+      query: () => `/task/all/641f53ada6e3c41e5c41296f`,
+      transformResponse: (responseData) => {
+        const loadedTask = responseData.map((task) => {
+          task.id = task._id;
+          return task;
+        });
+        return taskAdapter.setAll(initialState, loadedTask);
+      },
+      providesTags: (result, error, arg) => [
+        ...result.ids.map((id) => ({ type: "Task", id })),
+      ],
+    }),
+    updateTask: builder.mutation({
+      query: (initialNote) => ({
+        url: `/task/${initialNote.id}`,
+        method: "PUT",
+        body: {
+          ...initialNote,
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "Task", id: arg.id }],
+    }),
   }),
 });
 
-export const { useGetTasksQuery } = taskApiSlice;
+export const {
+  useGetTasksQuery,
+  useGetTasksByUserIdQuery,
+  useUpdateTaskMutation,
+} = taskApiSlice;
 
 //returns the query rsult object
 export const selectTasksResult = taskApiSlice.endpoints.getTasks.select();

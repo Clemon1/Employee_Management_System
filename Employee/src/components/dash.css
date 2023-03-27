@@ -47,7 +47,12 @@
   transform: scale(1);
 }
 /* Dashboard side bar design implementation */
-
+.dash {
+  display: flex;
+}
+.dash-container {
+  flex-grow: 1;
+}
 .dash-nav {
   display: flex;
   flex-direction: column;

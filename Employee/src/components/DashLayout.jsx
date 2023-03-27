@@ -3,12 +3,12 @@ import DashSideBar from "./DashSideBar";
 
 const DashLayout = () => {
   return (
-    <>
+    <main className="dash">
       <DashSideBar />
       <div className="dash-container">
         <Outlet />
       </div>
-    </>
+    </main>
   );
 };
 
