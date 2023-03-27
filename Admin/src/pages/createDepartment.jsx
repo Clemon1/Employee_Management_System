@@ -37,11 +37,10 @@ const Create_Department = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, "211px", "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Flex
@@ -49,8 +48,7 @@ const Create_Department = () => {
           justifyContent={"center"}
           height={"100vh"}
           py={20}
-          px={5}
-        >
+          px={5}>
           <Box width={"50%"} height={"fit-content"} bg={"#ffffff"} padding={5}>
             <form action='' onSubmit={handleSubmit}>
               <Text fontSize={23} fontWeight={700}>
@@ -89,8 +87,7 @@ const Create_Department = () => {
                     background: "#f4f4f4",
                     border: "2px #051724 solid",
                     fontWeight: 700,
-                  }}
-                >
+                  }}>
                   Submit
                 </Button>
               </Flex>

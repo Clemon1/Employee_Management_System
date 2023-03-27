@@ -30,24 +30,23 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   return (
     <VStack
-      width={"18%"}
+      width={["40%", "40%", "33%", "20%", "18%"]}
       height={"100vh"}
       bg={"#051724"}
       position={"fixed"}
+      zIndex={1000}
       py={4}
       gap={8}
       px={4}
       top={0}
-      left={0}
-    >
+      left={["-310", "-310", "-380", 0]}>
       <Box width={"100%"}>
         <Text
           textAlign={"center"}
           fontSize={25}
           fontWeight={800}
           color={"#ffffff"}
-          fontFamily={"'Orbitron', sans-serif;"}
-        >
+          fontFamily={"'Orbitron', sans-serif;"}>
           SCYLLA
         </Text>
       </Box>
@@ -59,27 +58,23 @@ const Sidebar = () => {
         fontWeight={600}
         display={"flex"}
         flexDirection={"column"}
-        color={"#ffffff"}
-      >
+        color={"#ffffff"}>
         <NavLink
           to='/dashboard'
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem
             px={8}
             py={2}
             display={"flex"}
             gap={1}
-            rounded={"10px 28px"}
-          >
+            rounded={"10px 28px"}>
             <Icon alignSelf={"center"} fontSize={"24px"} as={BiHomeCircle} />
             Overview
           </ListItem>
         </NavLink>
         <NavLink
           to='/payroll'
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem px={8} py={2} display={"flex"} gap={1}>
             <Icon
               alignSelf={"center"}
@@ -91,8 +86,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink
           to='/employees'
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem px={8} py={2} display={"flex"} gap={1}>
             <Icon alignSelf={"center"} fontSize={"24px"} as={IoIosPeople} />
             Employees
@@ -100,8 +94,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink
           to='/tasks'
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem px={8} py={2} display={"flex"} gap={1}>
             <Icon alignSelf={"center"} fontSize={"24px"} as={GoTasklist} />
             Tasks
@@ -109,8 +102,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink
           to='/attendance'
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem px={8} py={2} display={"flex"} gap={1}>
             <Icon alignSelf={"center"} fontSize={"24px"} as={FiBriefcase} />{" "}
             Attendance
@@ -118,8 +110,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink
           to='/department'
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem px={8} py={2} display={"flex"} gap={1}>
             <Icon alignSelf={"center"} fontSize={"24px"} as={SiBuildkite} />
             Departments
@@ -127,8 +118,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink
           to='/leave-request'
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem px={8} py={2} display={"flex"} gap={1}>
             <Icon
               alignSelf={"center"}
@@ -149,19 +139,16 @@ const Sidebar = () => {
         fontWeight={600}
         display={"flex"}
         flexDirection={"column"}
-        color={"#ffffff"}
-      >
+        color={"#ffffff"}>
         <NavLink
           to='/settings'
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem
             px={8}
             py={2}
             display={"flex"}
             gap={1}
-            rounded={"10px 28px"}
-          >
+            rounded={"10px 28px"}>
             <Icon alignSelf={"center"} fontSize={"24px"} as={MdSettings} />
             Settings
           </ListItem>
@@ -172,8 +159,7 @@ const Sidebar = () => {
           py={2}
           display={"flex"}
           gap={1}
-          rounded={"10px 28px"}
-        >
+          rounded={"10px 28px"}>
           <Icon alignSelf={"center"} fontSize={"24px"} as={BiLogOut} />
           LogOut
         </ListItem>

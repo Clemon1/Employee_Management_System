@@ -6,6 +6,7 @@ import { departmentAPI } from "./features/departmentSlice";
 import { taskAPi } from "./features/TaskSlide";
 import { leaveAPI } from "./features/LeaveSlide";
 import { attendanceApi } from "./features/attendanceSlice";
+import { payrollAPi } from "./features/payrollSlice";
 export const store = configureStore({
   reducer: {
     auth: authSlice,
@@ -14,6 +15,7 @@ export const store = configureStore({
     [taskAPi.reducerPath]: taskAPi.reducer,
     [leaveAPI.reducerPath]: leaveAPI.reducer,
     [attendanceApi.reducerPath]: attendanceApi.reducer,
+    [payrollAPi.reducerPath]: payrollAPi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -22,6 +24,7 @@ export const store = configureStore({
       taskAPi.middleware,
       leaveAPI.middleware,
       attendanceApi.middleware,
+      payrollAPi.middleware,
     ),
 });
 

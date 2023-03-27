@@ -28,11 +28,10 @@ const SingleEmployee = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, "211px", "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Flex width={"100%"} justifyContent={"center"} height={"100vh"} p={5}>
@@ -41,23 +40,20 @@ const SingleEmployee = () => {
             height={"100%"}
             bg={"#ffffff"}
             rounded={5}
-            padding={5}
-          >
+            padding={5}>
             <Flex
               flexDirection={"column"}
               flexWrap={"wrap"}
               gap={4}
               width={"100%"}
               height={"56vh"}
-              marginBottom={4}
-            >
+              marginBottom={4}>
               {isLoading && (
                 <Flex
                   width={"100%"}
                   height={"56vh"}
                   justifyContent={"center"}
-                  alignItems={"center"}
-                >
+                  alignItems={"center"}>
                   <Spinner thickness='4px' color='blue.500' size='xl' />
                 </Flex>
               )}
@@ -135,8 +131,7 @@ const SingleEmployee = () => {
                   width={"100%"}
                   height={"56vh"}
                   justifyContent={"center"}
-                  alignItems={"center"}
-                >
+                  alignItems={"center"}>
                   <Text fontSize={25} fontWeight={500}>
                     Error getting all department
                   </Text>

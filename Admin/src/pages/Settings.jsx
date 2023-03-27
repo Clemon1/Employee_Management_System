@@ -7,10 +7,9 @@ const Settings = () => {
       <Sidebar />
       <Box
         width={"82%"}
-        marginLeft={"243px"}
+        marginLeft={[0, 0, 0, "211px", "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Box width={"100%"} height={"100vh"} padding={5}>

@@ -34,11 +34,14 @@ const Navbar = () => {
       px={5}
       zIndex={100}
       boxShadow={"lg"}
-      py={4}
-    >
+      py={4}>
       <Flex width={"70%"}>
         <form onSubmit={handleSearch}>
-          <HStack width={"42rem"} border={"none"} borderRadius={22} spacing={0}>
+          <HStack
+            width={["", "", "30rem", "42rem"]}
+            border={"none"}
+            borderRadius={22}
+            spacing={0}>
             <Input
               placeholder='Search Employees'
               fontWeight={600}
@@ -59,15 +62,13 @@ const Navbar = () => {
               bg={"#051724"}
               _hover={{ background: "#051724" }}
               color={"#ffffff"}
-              type='submit'
-            >
+              type='submit'>
               <Icon as={BiSearch} fontSize={25} />
             </Button>
           </HStack>
         </form>
       </Flex>
       <Flex width={"30%"} gap={8} alignItems={"center"}>
-        <Switch colorScheme='teal' size='lg' />
         <Flex gap={4} alignItems={"center"}>
           {User && (
             <>

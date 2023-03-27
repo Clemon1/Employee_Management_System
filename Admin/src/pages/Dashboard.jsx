@@ -109,40 +109,53 @@ const Dashboard = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "80%", "82%"]}
+        marginLeft={[0, 0, 0, "209px", "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
-        <Box width={"100%"} height={"fit-content"} padding={5}>
-          <Flex width={"100%"} height={"45vh"} paddingBottom={8}>
-            <Flex width={"100%"} flexWrap={"wrap"} gap={2} height={"100%"}>
+        <Box
+          width={"100%"}
+          height={"fit-content"}
+          padding={[2, 2, 4, 5]}
+          bg={"#edf2f9"}>
+          <Flex
+            width={"100%"}
+            flexWrap={"wrap"}
+            flexDirection={["column", "column", "row", "row"]}
+            justifyContent={"center"}
+            height={["fit-content", "fit-content", "60vh", "45vh"]}
+            paddingBottom={8}>
+            <Flex
+              width={["100%", "100%", "50%", "50%"]}
+              flexWrap={"wrap"}
+              gap={2}
+              height={["65vh", "70vh", "100%", "100%"]}>
               <Flex
-                width={"48%"}
-                height={"49%"}
+                width={["48%", "49%", "48%", "48%"]}
+                height={["45%", "45%", "49%", "49%"]}
                 bg={"#ffffff"}
                 padding={4}
                 alignItems={"center"}
                 boxShadow={"md"}
-                rounded={8}
-              >
+                rounded={8}>
                 <Stat color={"#051724"}>
-                  <StatLabel fontWeight={700} fontSize={18}>
+                  <StatLabel
+                    fontWeight={[600, 600, 600, 700]}
+                    fontSize={[17, 17, 17, 18]}>
                     Total Employees
                   </StatLabel>
-                  <StatNumber fontSize={30} fontWeight={700}>
+                  <StatNumber fontSize={[29, 29, 29, 30]} fontWeight={700}>
                     {employee && employee.countEmp}
                   </StatNumber>
                   <StatHelpText fontSize={16}>Employees</StatHelpText>
                 </Stat>
                 <Box
                   borderRadius={"100%"}
-                  height={"9vh"}
+                  height={["11vh", "11vh", "9vh", "9vh"]}
                   padding={4}
                   bg={"#051724"}
-                  color={"rgb(0, 186, 199)"}
-                >
+                  color={"rgb(0, 186, 199)"}>
                   <Icon
                     alignSelf={"center"}
                     fontSize={"24px"}
@@ -151,16 +164,17 @@ const Dashboard = () => {
                 </Box>
               </Flex>
               <Flex
-                width={"48%"}
-                height={"49%"}
+                width={["48%", "49%", "48%", "48%"]}
+                height={["45%", "45%", "49%", "49%"]}
                 rounded={8}
                 bg={"#ffffff"}
                 padding={4}
                 alignItems={"center"}
-                boxShadow={"md"}
-              >
+                boxShadow={"md"}>
                 <Stat color={"#051724"}>
-                  <StatLabel fontWeight={700} fontSize={18}>
+                  <StatLabel
+                    fontWeight={[600, 600, 600, 700]}
+                    fontSize={[17, 17, 17, 18]}>
                     Total Task
                   </StatLabel>
                   <StatNumber fontSize={30} fontWeight={700}>
@@ -170,25 +184,25 @@ const Dashboard = () => {
                 </Stat>
                 <Box
                   borderRadius={"100%"}
-                  height={"9vh"}
+                  height={["11vh", "11vh", "9vh", "9vh"]}
                   padding={4}
                   bg={"#051724"}
-                  color={"rgb(0, 186, 199)"}
-                >
+                  color={"rgb(0, 186, 199)"}>
                   <Icon alignSelf={"center"} fontSize={"24px"} as={BiTask} />
                 </Box>
               </Flex>
               <Flex
-                width={"48%"}
-                height={"49%"}
+                width={["48%", "49%", "48%", "48%"]}
+                height={["45%", "45%", "49%", "49%"]}
                 bg={"#ffffff"}
                 rounded={8}
                 padding={4}
                 alignItems={"center"}
-                boxShadow={"md"}
-              >
+                boxShadow={"md"}>
                 <Stat color={"#051724"}>
-                  <StatLabel fontWeight={700} fontSize={18}>
+                  <StatLabel
+                    fontWeight={[600, 600, 600, 700]}
+                    fontSize={[17, 17, 17, 18]}>
                     Departments
                   </StatLabel>
                   <StatNumber fontSize={30} fontWeight={700}>
@@ -197,12 +211,11 @@ const Dashboard = () => {
                   <StatHelpText fontSize={16}>Total Department</StatHelpText>
                 </Stat>
                 <Box
-                  borderRadius={"100%"}
-                  height={"9vh"}
+                  borderRadius={["100%"]}
+                  height={["11vh", "11vh", "9vh", "9vh"]}
                   padding={4}
                   bg={"#051724"}
-                  color={"rgb(0, 186, 199)"}
-                >
+                  color={"rgb(0, 186, 199)"}>
                   <Icon
                     alignSelf={"center"}
                     fontSize={"24px"}
@@ -211,16 +224,17 @@ const Dashboard = () => {
                 </Box>
               </Flex>
               <Flex
-                width={"48%"}
-                height={"49%"}
+                width={["48%", "49%", "48%", "48%"]}
+                height={["45%", "45%", "49%", "49%"]}
                 rounded={8}
                 bg={"#ffffff"}
                 padding={4}
                 alignItems={"center"}
-                boxShadow={"md"}
-              >
+                boxShadow={"md"}>
                 <Stat color={"#051724"}>
-                  <StatLabel fontWeight={700} fontSize={18}>
+                  <StatLabel
+                    fontWeight={[600, 600, 600, 700]}
+                    fontSize={[17, 17, 17, 18]}>
                     Leave Request
                   </StatLabel>
                   <StatNumber fontSize={30} fontWeight={700}>
@@ -230,11 +244,10 @@ const Dashboard = () => {
                 </Stat>
                 <Box
                   borderRadius={"100%"}
-                  height={"9vh"}
+                  height={["11vh", "11vh", "9vh", "9vh"]}
                   padding={4}
                   bg={"#051724"}
-                  color={"rgb(0, 186, 199)"}
-                >
+                  color={"rgb(0, 186, 199)"}>
                   <Icon
                     alignSelf={"center"}
                     fontSize={"24px"}
@@ -243,26 +256,29 @@ const Dashboard = () => {
                 </Box>
               </Flex>
             </Flex>
-            <Box
-              width={"100%"}
+            <Flex
+              width={["100%", "100%", "50%", "50%"]}
               height={"100%"}
+              alignItems={"center"}
               rounded={8}
               bg={"#ffffff"}
-              padding={4}
-            >
+              padding={4}>
               <Line options={options} data={data} />
-            </Box>
+            </Flex>
           </Flex>
           {/* Next Section */}
-          <Flex width={"100%"} height={"65vh"} gap={3}>
+          <Flex
+            width={"100%"}
+            flexDirection={["column", "column", "row", "row"]}
+            height={["70vh", "100vh", "80vh", "65vh"]}
+            gap={3}>
             <Box
-              width={"60%"}
+              width={["100%", "100%", "60%", "60%"]}
               height={"100%"}
               bg={"#ffffff"}
               padding={4}
               rounded={8}
-              boxShadow={"lg"}
-            >
+              boxShadow={"lg"}>
               <Flex width={"100%"} justifyContent={"space-between"}>
                 <Text fontSize={20} fontWeight={800}>
                   Employee Status
@@ -285,7 +301,7 @@ const Dashboard = () => {
                     <Tr>
                       <Th>Full Name</Th>
                       <Th>Email</Th>
-                      <Th>department</Th>
+                      <Th>Gender</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
@@ -294,32 +310,32 @@ const Dashboard = () => {
                         <Tr key={employee._id}>
                           <Td>{employee.fullname}</Td>
                           <Td>{employee.email}</Td>
-                          <Td>Ether-Blockchain</Td>
+                          <Td>{employee.gender}</Td>
                         </Tr>
                       ))}
                   </Tbody>
                 </Table>
               </TableContainer>
             </Box>
-            <Box
-              width={"40%"}
+            <Flex
+              width={["100%", "100%", "40%", "40%"]}
               height={"100%"}
               bg={"#ffffff"}
-              padding={8}
+              padding={6}
+              justifyContent={"center"}
+              alignItems={"center"}
               rounded={8}
-              boxShadow={"lg"}
-            >
+              boxShadow={"lg"}>
               <Doughnut data={Data} />
               <Flex
                 position={"relative"}
-                top={"-220"}
-                width={150}
-                left={"90"}
-                bottom={0}
+                top={0}
+                width={"100%"}
+                translateX={"-50%"}
+                right={"50%"}
                 flexDirection={"column"}
                 zIndex={"2000 !important"}
-                gap={4}
-              >
+                gap={4}>
                 <Flex gap={3} justifyContent={"center"} alignItems={"center"}>
                   <Image
                     borderRadius='full'
@@ -331,8 +347,7 @@ const Dashboard = () => {
                     fontSize={23}
                     color={"#051724"}
                     fontWeight={900}
-                    textAlign={"center"}
-                  >
+                    textAlign={"center"}>
                     {employee && employee.findMale}
                   </Text>
                 </Flex>
@@ -347,13 +362,12 @@ const Dashboard = () => {
                     color={"#051724"}
                     fontSize={23}
                     fontWeight={900}
-                    textAlign={"center"}
-                  >
+                    textAlign={"center"}>
                     {employee && employee.findFemale}
                   </Text>
                 </Flex>
               </Flex>
-            </Box>
+            </Flex>
           </Flex>
         </Box>
       </Box>

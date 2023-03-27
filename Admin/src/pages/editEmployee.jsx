@@ -72,11 +72,10 @@ const Edit_Employee = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, "211px", "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Box width={"100%"} height={"100vh"} padding={5}>
@@ -86,8 +85,7 @@ const Edit_Employee = () => {
               height='100%'
               rounded={5}
               bg={"#ffffff"}
-              padding={5}
-            >
+              padding={5}>
               <Text fontWeight={700} fontSize='25'>
                 Create Employee
               </Text>
@@ -95,8 +93,7 @@ const Edit_Employee = () => {
                 width={"100%"}
                 justifyContent={"flex-start"}
                 alignItems={"end"}
-                marginBottom={3}
-              >
+                marginBottom={3}>
                 <Box>
                   <FormLabel fontSize={18}>Profile Picture</FormLabel>
                   <Image
@@ -150,8 +147,7 @@ const Edit_Employee = () => {
                     fontWeight={600}
                     onChange={(e) => setGender(e.target.value)}
                     border={"2px #051724 solid !important"}
-                    placeholder='Select your gender'
-                  >
+                    placeholder='Select your gender'>
                     <option fontWeight={600} value='Male'>
                       Male
                     </option>
@@ -169,15 +165,13 @@ const Edit_Employee = () => {
                     fontWeight={600}
                     onChange={(e) => setSetDepartment(e.target.value)}
                     border={"2px #051724 solid !important"}
-                    placeholder='Select employee department'
-                  >
+                    placeholder='Select employee department'>
                     {depth &&
                       depth.departmentAll.map((dept) => (
                         <option
                           key={dept._id}
                           fontWeight={600}
-                          value={dept._id}
-                        >
+                          value={dept._id}>
                           {dept.name}
                         </option>
                       ))}
@@ -212,8 +206,7 @@ const Edit_Employee = () => {
                   background: "#f4f4f4",
                   border: "2px #051724 solid",
                   fontWeight: 700,
-                }}
-              >
+                }}>
                 Submit
               </Button>
             </Box>

@@ -31,27 +31,24 @@ const SingleDepartment = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, "211px", "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Flex
           width={"100%"}
           justifyContent={"center"}
           height={"100vh"}
-          padding={5}
-        >
+          padding={5}>
           <Flex
             flexDirection={"column"}
             width={"100%"}
             height={"100%"}
             gap={20}
             rounded={5}
-            padding={5}
-          >
+            padding={5}>
             <Flex direction={"column"} width={"100%"} p={2} gap={2}>
               <Flex width={"100%"} gap={8}>
                 {data && data.singleDepartment && (
@@ -82,15 +79,13 @@ const SingleDepartment = () => {
               gap={4}
               width={"100%"}
               height={"56vh"}
-              marginBottom={4}
-            >
+              marginBottom={4}>
               {isLoading && (
                 <Flex
                   width={"100%"}
                   height={"56vh"}
                   justifyContent={"center"}
-                  alignItems={"center"}
-                >
+                  alignItems={"center"}>
                   <Spinner thickness='4px' color='blue.500' size='xl' />
                 </Flex>
               )}
@@ -112,13 +107,11 @@ const SingleDepartment = () => {
                       rounded={"xl"}
                       boxShadow='lg'
                       p={4}
-                      key={department._id}
-                    >
+                      key={department._id}>
                       <Flex
                         width={"100%"}
                         height={73}
-                        justifyContent={"center"}
-                      >
+                        justifyContent={"center"}>
                         <Avatar
                           position={"relative"}
                           top={"-58px"}
@@ -131,8 +124,7 @@ const SingleDepartment = () => {
                         <Text
                           textAlign={"center"}
                           fontWeight={700}
-                          fontSize={20}
-                        >
+                          fontSize={20}>
                           {department.fullname}
                         </Text>
                       </HStack>
@@ -146,8 +138,7 @@ const SingleDepartment = () => {
                   height={"30vh"}
                   bg={"#ffffff"}
                   justifyContent={"center"}
-                  alignItems={"center"}
-                >
+                  alignItems={"center"}>
                   <Text fontSize={25} fontWeight={500}>
                     Error getting all department
                   </Text>

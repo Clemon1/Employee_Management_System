@@ -40,11 +40,10 @@ const Employees = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, "211px", "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Box width={"100%"} height={"100vh"} padding={5}>
@@ -54,8 +53,7 @@ const Employees = () => {
             bg={"#ffffff"}
             padding={4}
             boxShadow={"lg"}
-            rounded={4}
-          >
+            rounded={4}>
             <Flex width={"100%"} justifyContent={"space-between"}>
               <Text color={"#051724"} fontSize={23} fontWeight={800}>
                 Employees
@@ -71,8 +69,7 @@ const Employees = () => {
               <Table
                 height={"fit-content"}
                 variant='striped'
-                colorScheme={"messenger"}
-              >
+                colorScheme={"messenger"}>
                 <Thead>
                   <Tr>
                     <Th>Profile Picture</Th>
@@ -112,8 +109,7 @@ const Employees = () => {
                             <Button
                               rounded={"full"}
                               variant={"solid"}
-                              colorScheme={"blue"}
-                            >
+                              colorScheme={"blue"}>
                               E
                             </Button>
                           </Link>
@@ -131,8 +127,7 @@ const Employees = () => {
               justifyContent={"flex-end"}
               gap={7}
               padding={2}
-              alignItems={"center"}
-            >
+              alignItems={"center"}>
               {" "}
               {page === 1 ? (
                 <Button rounded={100} width={30} disabled>
@@ -146,8 +141,7 @@ const Employees = () => {
                   color={"#ffffff"}
                   _hover={{ bg: "#051724 !important" }}
                   onClick={() => setPage(page - 1)}
-                  isLoading={isFetching}
-                >
+                  isLoading={isFetching}>
                   <Icon as={IoIosArrowBack} />
                 </Button>
               )}
@@ -167,8 +161,7 @@ const Employees = () => {
                   color={"#ffffff"}
                   _hover={{ bg: "#051724 !important" }}
                   onClick={() => setPage(page + 1)}
-                  isLoading={isFetching}
-                >
+                  isLoading={isFetching}>
                   <Icon as={IoIosArrowForward} />
                 </Button>
               )}
