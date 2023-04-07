@@ -6,6 +6,7 @@ const EditTaskForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
+  const [priority, setPriority] = useState("");
   const { taskId } = useParams();
   const [updateTask, { isLoading }] = useUpdateTaskMutation();
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const EditTaskForm = () => {
         title,
         description,
         completion: status,
+        priority: priority,
       }).unwrap();
       setTitle("");
       setDescription("");
@@ -47,7 +49,7 @@ const EditTaskForm = () => {
       setTitle(task.title);
       setDescription(task.description);
       setStatus(task.completion);
-      console.log("edit task, loaded task successfully", task);
+      setPriority(task.priority);
     }
   }, [isSuccess, task?.title, task?.description, task?.completion]);
 
@@ -96,7 +98,7 @@ const EditTaskForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="status">Status</label>
+          <label htmlFor="status">Status: {status}</label>
           <select
             name="status"
             id="status"
@@ -107,6 +109,21 @@ const EditTaskForm = () => {
             <option value="Pending">Pending</option>
             <option value="Completed">Completed</option>
             <option value="Late Delivery">Late Delivery</option>
+            <option value="Started">In Progress</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="priority">Priority</label>
+          <select
+            name="priority"
+            id="priority"
+            defaultValue={priority}
+            onBlur={(e) => setPriority(e.target.value)}
+          >
+            <option value="">Select Priority</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
           </select>
         </div>
         <div>

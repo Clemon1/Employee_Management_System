@@ -1,6 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useGetTasksQuery } from "./taskSlice";
 import { Link } from "react-router-dom";
+import EditTaskStatus from "./EditTaskStatus";
+import SubmitTaskReview from "./SubmitTaskReview";
+import TaskDescription from "./TaskDescription";
+import TaskDate from "./TaskDate";
 
 const Task = () => {
   const { taskId } = useParams();
@@ -17,27 +21,36 @@ const Task = () => {
     console.log(task);
   } else if (isSuccess) {
     content = (
-      <div>
-        <h1>{task.title}</h1>
-        <p>Task Description</p>
-        <p>{task.description}</p>
-        <p>due in {task.dateToDeliver} </p>
-        <p>status</p>
-        <p>{task.completion} </p>
-        <Link
+      <div className="taskPage-container">
+        <div className="taskPage-title">
+          <h1>{task.title}</h1>
+          <p>Task Description</p>
+          <TaskDescription description={task.description} />
+        </div>
+
+        <div className="taskPage-details">
+          <div className="taskPage-details_items">
+            <h3>
+              Due <TaskDate date={task.dateToDeliver} />
+            </h3>
+
+            <SubmitTaskReview id={task.id} />
+
+            <EditTaskStatus id={task.id} />
+          </div>
+
+          {/* <Link
           to={`/dash/task/edit/${task.id}`}
           style={{ textDecoration: "none" }}
         >
           <p>Edit Task</p>
-        </Link>
+        </Link> */}
+        </div>
       </div>
     );
   }
-  const checkId = (id) => {
-    console.log(id);
-  };
-  checkId(taskId);
-  return content;
+
+  return <div className="task">{content}</div>;
 };
 
 export default Task;

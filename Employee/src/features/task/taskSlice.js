@@ -16,18 +16,17 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         });
         return taskAdapter.setAll(initialState, loadedTask);
       },
-      providesTags: (result, error, arg) => {
-        if (result?.ids) {
-          return [
-            { type: "Task", id: "List" },
-            ...result.ids.map((id) => ({ type: "Task", id })),
-          ];
-        } else return [{ type: "Task", id: "List" }];
-      },
+      providesTags: (result, error, arg) => [
+        ...result.ids.map((id) => ({ type: "Task", id })),
+      ],
     }),
     getTasksByUserId: builder.query({
-      query: () => `/task/all/641f53ada6e3c41e5c41296f`,
+      query: () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        return `/task/all/${user._id}`;
+      },
       transformResponse: (responseData) => {
+        console.log(responseData);
         const loadedTask = responseData.map((task) => {
           task.id = task._id;
           return task;
@@ -71,3 +70,12 @@ export const {
   selectIds: selectTaskIds,
   //pass in a selector that returns the posts slice of state
 } = taskAdapter.getSelectors((state) => selectTaskData(state) ?? initialState);
+
+/*
+ if (result?.ids) {
+          return [
+            { type: "Task", id: "List" },
+            ...result.ids.map((id) => ({ type: "Task", id })),
+          ];
+        } else return [{ type: "Task", id: "List" }];
+*/

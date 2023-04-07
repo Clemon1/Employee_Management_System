@@ -49,6 +49,8 @@
 /* Dashboard side bar design implementation */
 .dash {
   display: flex;
+  position: relative;
+  height: 100vh;
 }
 .dash-container {
   flex-grow: 1;
@@ -58,11 +60,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 220px;
-  background-color: white;
-  height: 100vh;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-  padding: 0 40px;
+  width: 210px;
+  height: 100%;
+  padding: 0 30px;
+  /* border-right: 1px solid lightblue; */
 }
 .dash-nav__items {
   display: flex;
@@ -73,12 +74,22 @@
   display: flex;
   align-items: center;
   justify-content: start;
+  padding: 0 30px;
 }
 .dash-nav__items-group p {
   margin-left: 10px;
   text-decoration: none;
 }
 .dash-nav__items-group:hover {
-  background-color: lightgray;
+  background-color: #f9f9f9;
   border-radius: 5px;
+}
+@media screen and (max-width: 600px) {
+  .dash-nav {
+    display: none;
+    /* width: 10vw; */
+  }
+  .dash {
+    flex-direction: column;
+  }
 }
