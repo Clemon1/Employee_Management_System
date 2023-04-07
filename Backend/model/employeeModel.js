@@ -39,7 +39,7 @@ const employeeSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 const Employees = mongoose.model("Employees", employeeSchema);

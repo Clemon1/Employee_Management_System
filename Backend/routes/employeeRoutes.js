@@ -14,6 +14,7 @@ const {
 } = require("../controller/employeeController");
 // const a = require("../uploads/empProfilePics");
 
+const verifyJWT = require("../middleware/verifyJWT");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "../Backend/uploads/empProfilePics"),
   filename: (req, file, cb) => {
@@ -22,6 +23,8 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
+
+// router.use(verifyJWT);
 
 //Get all Employees
 router.get("/all", getAllEmployees);
@@ -40,6 +43,7 @@ router.post("/create", upload.single("profile"), createEmployee);
 router.post("/login", loginEmployee);
 // Update Employee
 router.put("/:id", updateEmployee);
+//provide employee with access token and refresh tokens
 
 // Delete Employee
 router.delete("/:id", deleteEmployee);

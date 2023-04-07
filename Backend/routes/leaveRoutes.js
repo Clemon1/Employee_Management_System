@@ -10,7 +10,7 @@ const {
 
 router.get("/", viewAllLeave); // admin
 
-router.get("/employee", employeeLeave); // employee own Leave
+router.get("/employee/:id", employeeLeave); // employee own Leave
 
 router.get("/:id", singleLeave); // Single Leave
 

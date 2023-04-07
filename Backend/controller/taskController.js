@@ -1,5 +1,6 @@
 const { Task } = require("../model/taskModel");
 const { Users } = require("../model/userModel");
+const { Employees } = require("../model/employeeModel");
 
 // Getting all the task
 const getAllTask = async (req, res) => {
@@ -14,13 +15,13 @@ const getAllTask = async (req, res) => {
           .populate("employee")
           .sort({ createdAt: -1 })
           .exec());
-
+    const tasks = await Task.find().populate("employee").exec();
     const countPending = await Task.find({ completion: "Pending" }).count();
     const countCompleted = await Task.find({ completion: "Completed" }).count();
     const countTotalTask = await Task.find().count();
     res
       .status(200)
-      .json({ allTask, countPending, countCompleted, countTotalTask });
+      .json({ tasks, allTask, countPending, countCompleted, countTotalTask });
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -49,7 +50,18 @@ const viewTask = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+const employeeTask = async (req, res) => {
+  try {
+    const employeeId = req.params.id;
+    const tasks = await Task.find({ employee: employeeId }).populate(
+      "employee"
+    );
 
+    res.status(200).json(tasks);
+  } catch (err) {
+    res.status(400).json(err?.message);
+  }
+};
 //Create and Assign task for Employee
 const createTask = async (req, res) => {
   try {
@@ -79,7 +91,15 @@ const createTask = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
-
+//create many task
+const createMany = async (req, res) => {
+  try {
+    const task = await Task.create(req.body);
+    res.status(200).json(task);
+  } catch (err) {
+    res.status(400).json(err.message);
+  }
+};
 // Update Task information
 
 const updateTask = async (req, res) => {
@@ -109,6 +129,8 @@ module.exports = {
   getSingleTask,
   createTask,
   viewTask, // For Employees task dashboard
+  createMany, //create bulk task
+  employeeTask,
   updateTask,
   deleteTask,
 };
