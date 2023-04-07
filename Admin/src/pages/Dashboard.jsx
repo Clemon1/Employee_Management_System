@@ -109,8 +109,8 @@ const Dashboard = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={["100%", "100%", "100%", "80%", "82%"]}
-        marginLeft={[0, 0, 0, "209px", "243px"]}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
         bg={"#edf2f9"}>
         <Navbar />
@@ -122,12 +122,14 @@ const Dashboard = () => {
           <Flex
             width={"100%"}
             flexWrap={"wrap"}
-            flexDirection={["column", "column", "row", "row"]}
+            gap={"13px"}
+            flex={"1 1 0"}
+            flexDirection={["column", "column", "row", "row", "row"]}
             justifyContent={"center"}
             height={["fit-content", "fit-content", "60vh", "45vh"]}
             paddingBottom={8}>
             <Flex
-              width={["100%", "100%", "50%", "50%"]}
+              width={["100%", "95%", "46%", "48%", "48%"]}
               flexWrap={"wrap"}
               gap={2}
               height={["65vh", "70vh", "100%", "100%"]}>
@@ -135,6 +137,7 @@ const Dashboard = () => {
                 width={["48%", "49%", "48%", "48%"]}
                 height={["45%", "45%", "49%", "49%"]}
                 bg={"#ffffff"}
+                flex={"1 1 0"}
                 padding={4}
                 alignItems={"center"}
                 boxShadow={"md"}
@@ -168,6 +171,7 @@ const Dashboard = () => {
                 height={["45%", "45%", "49%", "49%"]}
                 rounded={8}
                 bg={"#ffffff"}
+                flex={"1 1 0"}
                 padding={4}
                 alignItems={"center"}
                 boxShadow={"md"}>
@@ -195,6 +199,7 @@ const Dashboard = () => {
                 width={["48%", "49%", "48%", "48%"]}
                 height={["45%", "45%", "49%", "49%"]}
                 bg={"#ffffff"}
+                flex={"1 1 0"}
                 rounded={8}
                 padding={4}
                 alignItems={"center"}
@@ -228,6 +233,7 @@ const Dashboard = () => {
                 height={["45%", "45%", "49%", "49%"]}
                 rounded={8}
                 bg={"#ffffff"}
+                flex={"1 1 0"}
                 padding={4}
                 alignItems={"center"}
                 boxShadow={"md"}>
@@ -257,7 +263,7 @@ const Dashboard = () => {
               </Flex>
             </Flex>
             <Flex
-              width={["100%", "100%", "50%", "50%"]}
+              width={["100%", "100%", "50%", "45%", "50%"]}
               height={"100%"}
               alignItems={"center"}
               rounded={8}
@@ -321,16 +327,15 @@ const Dashboard = () => {
               width={["100%", "100%", "40%", "40%"]}
               height={"100%"}
               bg={"#ffffff"}
-              padding={6}
+              padding={10}
               justifyContent={"center"}
               alignItems={"center"}
               rounded={8}
               boxShadow={"lg"}>
-              <Doughnut data={Data} />
+              <Doughnut position={"relative"} translateX={"36px"} data={Data} />
               <Flex
                 position={"relative"}
                 top={0}
-                width={"100%"}
                 translateX={"-50%"}
                 right={"50%"}
                 flexDirection={"column"}

@@ -35,10 +35,11 @@ const Navbar = () => {
       zIndex={100}
       boxShadow={"lg"}
       py={4}>
+      <Button display={["block", "block", "block", "block", "none"]}>=</Button>
       <Flex width={"70%"}>
         <form onSubmit={handleSearch}>
           <HStack
-            width={["", "", "30rem", "42rem"]}
+            width={["16rem", "20rem", "29rem", "30rem", "42rem"]}
             border={"none"}
             borderRadius={22}
             spacing={0}>
@@ -68,7 +69,11 @@ const Navbar = () => {
           </HStack>
         </form>
       </Flex>
-      <Flex width={"30%"} gap={8} alignItems={"center"}>
+      <Flex
+        width={"30%"}
+        gap={8}
+        alignItems={"center"}
+        display={["none", "none", "none", "none", "flex"]}>
         <Flex gap={4} alignItems={"center"}>
           {User && (
             <>

@@ -15,6 +15,11 @@ export const taskAPi = createApi({
       query: (id) => `/${id}`,
       providesTags: ["Task"],
     }),
+    //Single Employee Task
+    getEmployTask: builder.query({
+      query: (id) => `/employeeTask/${id}`,
+      providesTags: ["Task"],
+    }),
     // Create Task
     addTask: builder.mutation({
       query(body) {
@@ -29,5 +34,9 @@ export const taskAPi = createApi({
   }),
 });
 
-export const { useGetAllTaskQuery, useGetSingleTaskQuery, useAddTaskMutation } =
-  taskAPi;
+export const {
+  useGetAllTaskQuery,
+  useGetSingleTaskQuery,
+  useGetEmployTaskQuery,
+  useAddTaskMutation,
+} = taskAPi;

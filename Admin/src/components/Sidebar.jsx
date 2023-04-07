@@ -30,7 +30,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   return (
     <VStack
-      width={["40%", "40%", "33%", "20%", "18%"]}
+      width={["40%", "40%", "33%", "20%", "242px"]}
       height={"100vh"}
       bg={"#051724"}
       position={"fixed"}
@@ -39,7 +39,7 @@ const Sidebar = () => {
       gap={8}
       px={4}
       top={0}
-      left={["-310", "-310", "-380", 0]}>
+      left={["-310", "-310", "-380", "-380", 0]}>
       <Box width={"100%"}>
         <Text
           textAlign={"center"}

@@ -5,6 +5,7 @@ const path = require("path");
 const {
   getAllEmployees,
   getSingleEmployees,
+  empViewTask,
   createEmployee,
   countEmployees,
   loginEmployee,
@@ -25,6 +26,9 @@ const upload = multer({ storage });
 
 //Get all Employees
 router.get("/all", getAllEmployees);
+
+// employee task
+router.get("/employeeTask/:id", empViewTask);
 
 // Search Employee
 router.get("/search/:key", searchEmp);

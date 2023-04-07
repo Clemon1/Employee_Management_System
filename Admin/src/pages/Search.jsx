@@ -24,8 +24,8 @@ const Search = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={[0, 0, 0, "211px", "243px"]}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
         bg={"#edf2f9"}>
         <Navbar />

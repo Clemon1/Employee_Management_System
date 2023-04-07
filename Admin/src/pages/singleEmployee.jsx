@@ -5,6 +5,9 @@ import {
   HStack,
   Button,
   Avatar,
+  Card,
+  CardBody,
+  Badge,
   Spinner,
   Icon,
 } from "@chakra-ui/react";
@@ -13,7 +16,10 @@ import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import moment from "moment";
 import { useParams } from "react-router-dom";
-import { useGetSingleEmployeeQuery } from "../features/employeeSlice";
+import {
+  useGetSingleEmployeeQuery,
+  useGetTaskEmployeeQuery,
+} from "../features/employeeSlice";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { HiOutlineRectangleGroup } from "react-icons/hi2";
@@ -24,12 +30,14 @@ import { FiEdit } from "react-icons/fi";
 const SingleEmployee = () => {
   const { id } = useParams();
   const { data, isLoading, isError } = useGetSingleEmployeeQuery(id);
+  const { data: task } = useGetTaskEmployeeQuery(id);
+  console.log(task);
   return (
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={["100%", "100%", "100%", "82%"]}
-        marginLeft={[0, 0, 0, "211px", "243px"]}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
         bg={"#edf2f9"}>
         <Navbar />
@@ -59,7 +67,11 @@ const SingleEmployee = () => {
               )}
               {data && (
                 <Flex flexDirection={"column"} width={"100%"} height={"100vh"}>
-                  <HStack justify={"center"} width={"100%"} spacing={"24px"}>
+                  <Flex
+                    direction={["column", "column", "row", "row", "row"]}
+                    justify={"center"}
+                    width={"100%"}
+                    spacing={"24px"}>
                     <Avatar
                       size='2xl'
                       name={data.fullname}
@@ -114,15 +126,76 @@ const SingleEmployee = () => {
                         </Text>
                       </HStack>
                     </Box>
-                    <Button variant={"solid"} colorScheme='blue' fontSize={28}>
+                    <Button
+                      width={["20%", "20%", "15%", "12%", "8%"]}
+                      variant={"solid"}
+                      colorScheme='blue'
+                      fontSize={28}>
                       <Icon as={FiEdit} />
                     </Button>
-                  </HStack>
+                  </Flex>
                   {/* Task */}
-                  <Flex>
+                  <Flex width={"100%"} flexDirection={"column"}>
                     <Text fontSize={22} fontWeight={700} color={"#051724"}>
                       Task Assigned:
                     </Text>
+                    <Flex
+                      width={"100%"}
+                      flex={"1 1 0"}
+                      flexWrap={"wrap"}
+                      background={"#ffffff"}
+                      height={"fit-content"}
+                      gap={2}
+                      justifyContent={"flex-start"}>
+                      {/* Tasks */}
+
+                      {task && task <= 0 && (
+                        <>
+                          <Text>No task assigned yet.</Text>
+                        </>
+                      )}
+                      {task &&
+                        task.map((task) => (
+                          <Card
+                            key={task._id}
+                            Card
+                            width={"16.8rem"}
+                            rounded={"lg"}
+                            bg={"#ffffff"}
+                            boxShadow={"lg"}>
+                            <CardBody>
+                              <Text
+                                noOfLines={[1]}
+                                fontSize={18}
+                                marginBottom={3}
+                                fontWeight={600}>
+                                {task.title}
+                              </Text>
+
+                              <Flex width={"100%"}>
+                                {task.completion === "Pending" && (
+                                  <Badge
+                                    rounded={5}
+                                    p={1}
+                                    variant='solid'
+                                    colorScheme='blue'>
+                                    {task.completion}
+                                  </Badge>
+                                )}
+                                {task.completion === "Completed" && (
+                                  <Badge
+                                    rounded={5}
+                                    p={1}
+                                    variant='solid'
+                                    colorScheme='green'>
+                                    {task.completion}
+                                  </Badge>
+                                )}
+                              </Flex>
+                            </CardBody>
+                          </Card>
+                        ))}
+                    </Flex>
                   </Flex>
                 </Flex>
               )}

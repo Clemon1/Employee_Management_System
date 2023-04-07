@@ -18,6 +18,17 @@ export const employeeApi = createApi({
       query: () => `count`,
       providesTags: ["Employee"],
     }),
+
+    // Get Single Employee
+    getSingleEmployee: builder.query({
+      query: (id) => `${id}`,
+      providesTags: ["Employee"],
+    }),
+    // Get Single Employee
+    getTaskEmployee: builder.query({
+      query: (id) => `/employeeTask/${id}`,
+      providesTags: ["Employee"],
+    }),
     // Slice For creating Employee
     addEmployee: builder.mutation({
       query(body) {
@@ -29,16 +40,13 @@ export const employeeApi = createApi({
       },
       invalidatesTags: ["Employee"],
     }),
-    // Get Single Employee
-    getSingleEmployee: builder.query({
-      query: (id) => `${id}`,
-    }),
   }),
 });
 
 export const {
   useGetAllEmployeesQuery,
   useCountEmployeeQuery,
+  useGetTaskEmployeeQuery,
   useGetSingleEmployeeQuery,
   useAddEmployeeMutation,
   useGetSearchEmployeesQuery,

@@ -1,5 +1,6 @@
 const { Task } = require("../model/taskModel");
 const { Users } = require("../model/userModel");
+const { Employees } = require("../model/employeeModel");
 
 // Getting all the task
 const getAllTask = async (req, res) => {
@@ -42,6 +43,20 @@ const viewTask = async (req, res) => {
     const currentUser = await Users.findById(req.params.id);
 
     const findTask = await Task.find({ Employee: currentUser._id }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(findTask);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+// Employee own specific task
+const empViewTask = async (req, res) => {
+  try {
+    const singleEmployee = await Employees.findById(req.params.id);
+
+    const findTask = await Task.find({ employee: singleEmployee._id }).sort({
       createdAt: -1,
     });
     res.status(200).json(findTask);
@@ -109,6 +124,7 @@ module.exports = {
   getSingleTask,
   createTask,
   viewTask, // For Employees task dashboard
+  empViewTask,
   updateTask,
   deleteTask,
 };

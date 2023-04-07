@@ -29,8 +29,8 @@ const Department = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={["100%", "100%", "100%", "82%"]}
-        marginLeft={[0, 0, 0, "211px", "243px"]}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
         bg={"#edf2f9"}>
         <Navbar />
@@ -51,8 +51,9 @@ const Department = () => {
             <Flex
               flexWrap={"wrap"}
               gap={4}
+              bg={"#edf2f9"}
               width={"100%"}
-              height={"56vh"}
+              height={["90vh", "92vh", "90vh", "70vh", "56vh"]}
               marginBottom={4}>
               {isLoading && (
                 <Flex
@@ -66,7 +67,7 @@ const Department = () => {
               {data &&
                 data.alldepartment.map((department) => (
                   <Card
-                    width={"32%"}
+                    width={["50%", "49%", "47%", "47%", "32%"]}
                     height={"10rem"}
                     bg={"#ffffff"}
                     rounded={9}
