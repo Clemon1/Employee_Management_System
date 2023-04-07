@@ -17,7 +17,7 @@ const LogOut = () => {
   if (isError) return <p>Error: {error.data?.message}</p>;
   const logoutButton = (
     <div className="icon-button" title="Logout" onClick={sendLogout}>
-      Log Out
+      LogOut
       <IconButton>
         <LogoutRoundedIcon sx={{ fontSize: "20px", color: "white" }} />
       </IconButton>

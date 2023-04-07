@@ -52,6 +52,13 @@ const NavBar = () => {
         >
           Profile
         </Link>
+        <Link
+          to={"/dash/profile"}
+          style={{ textDecoration: "none", color: "black" }}
+          onClick={toggleMenu}
+        >
+          Leave
+        </Link>
       </div>
     </div>
   );

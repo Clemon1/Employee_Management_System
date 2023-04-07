@@ -58,6 +58,20 @@ const DashSideBar = () => {
           />
           Profile
         </Link>
+        <Link
+          to={"/dash/profile"}
+          style={{ textDecoration: "none", color: "black" }}
+          className={
+            location.pathname === "/dash/profile"
+              ? "activeStyle"
+              : "dash-nav__items-link"
+          }
+        >
+          <AccountBoxRoundedIcon
+            sx={{ marginRight: "10px", color: "#0e5b92", fontSize: "18px" }}
+          />
+          Leave
+        </Link>
       </div>
       <div className="dash-nav__items-group">
         <LogOut />

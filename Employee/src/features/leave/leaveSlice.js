@@ -37,6 +37,16 @@ export const leaveApiSlice = apiSlice.injectEndpoints({
         ...result.ids.map((id) => ({ type: "Leave", id })),
       ],
     }),
+    createLeave: builder.mutation({
+      query: (leave) => ({
+        url: "/leave/create",
+        method: "POST",
+        body: {
+          ...leave,
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "Leave", id: arg.id }],
+    }),
     updateLeave: builder.mutation({
       query: (initialLeave) => ({
         url: `/leave/${initialLeave.id}`,
@@ -54,6 +64,7 @@ export const {
   useGetLeaveQuery,
   useGetLeaveByUserIdQuery,
   useUpdateLeaveMutation,
+  useCreateLeaveMutation,
 } = leaveApiSlice;
 
 //returns the query rsult object

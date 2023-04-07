@@ -15,6 +15,7 @@ import TaskDescription from "./features/task/TaskDescription";
 import { useGetTasksByUserIdQuery } from "./features/task/taskSlice";
 import TaskReview from "./features/task/TaskReview";
 import NavBar from "./components/NavBar";
+import LeaveForm from "./features/leave/LeaveForm";
 import React from "react";
 
 const Test = () => {
@@ -35,7 +36,7 @@ const Test = () => {
   // console.log(allTask);
   return (
     <div>
-      <NavBar />
+      <LeaveForm />
     </div>
   );
 };
