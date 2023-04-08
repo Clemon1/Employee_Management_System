@@ -17,30 +17,30 @@ import Test from "./Test";
 
 function App() {
   const User = JSON.parse(localStorage.getItem("user"));
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  if (User) {
-    setIsLoggedIn(true);
-  }
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // if (User) {
+  //   setIsLoggedIn(true);
+  // }
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path='/' element={<Layout />}>
         <Route index element={<Public />} />
         {/* <Route path="test" element={<Test />} /> */}
         {/* Protected routes */}
-        <Route path="dash" element={<DashLayout />}>
+        <Route path='dash' element={<DashLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="task">
+          <Route path='task'>
             <Route index element={<TaskList />} />
-            <Route path=":taskId" element={<Task />} />
-            <Route path="edit/:taskId" element={<EditTaskForm />} />
+            <Route path=':taskId' element={<Task />} />
+            <Route path='edit/:taskId' element={<EditTaskForm />} />
           </Route>
-          <Route path="profile">
+          <Route path='profile'>
             <Route index element={<UserPage />} />
           </Route>
-          <Route path="leave">
+          <Route path='leave'>
             <Route index element={<LeavePage />} />
-            <Route path="apply" element={<LeaveForm />} />
-            <Route path=":id" element={<Leave />} />
+            <Route path='apply' element={<LeaveForm />} />
+            <Route path=':id' element={<Leave />} />
           </Route>
         </Route>
       </Route>

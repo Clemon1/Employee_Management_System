@@ -14,7 +14,7 @@ const LeaveForm = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [title, setTitle] = useState("");
-  const [fullname, setFullname] = useState("");
+
   const [open, setOpen] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -43,7 +43,7 @@ const LeaveForm = () => {
         reason: leaveReason,
         date_of_leave: startDate,
         date_of_resumption: endDate,
-        fullname,
+
         title,
       });
       setTitle("");
@@ -61,83 +61,72 @@ const LeaveForm = () => {
   };
   // console.log(title);
   let content = (
-    <form onSubmit={handleSubmit} className="leaveform">
-      <div className="leaveform-title">
+    <form onSubmit={handleSubmit} className='leaveform'>
+      <div className='leaveform-title'>
         <h2>Leave Application</h2>
       </div>
-      <div className="leaveform-group">
-        <label htmlFor="name" className="leaveform-group_label">
-          Fullname
-        </label>
-        <input
-          type="text"
-          className="leaveform-group_input"
-          onChange={(e) => setFullname(e.target.value)}
-        />
-      </div>
-      <div className="leaveform-group">
-        <label htmlFor="title" className="leaveform-group_label">
+
+      <div className='leaveform-group'>
+        <label htmlFor='title' className='leaveform-group_label'>
           Choose Title
         </label>
         <select
-          id="title"
+          id='title'
           onChange={(e) => setTitle(e.target.value)}
-          className="leaveform-group_select"
-        >
-          <option value="">Select Title</option>
-          <option value="Annual">Annual</option>
-          <option value="Medical">Medical</option>
-          <option value="Emergency">Emergency</option>
-          <option value="Compassionate">Compassionate</option>
+          className='leaveform-group_select'>
+          <option value=''>Select Title</option>
+          <option value='Annual'>Annual</option>
+          <option value='Medical'>Medical</option>
+          <option value='Emergency'>Emergency</option>
+          <option value='Compassionate'>Compassionate</option>
         </select>
       </div>
-      <div className="leaveform-group">
-        <label htmlFor="startDate" className="leaveform-group_label">
+      <div className='leaveform-group'>
+        <label htmlFor='startDate' className='leaveform-group_label'>
           Start Date
         </label>
         <DatePicker
           selected={startDate}
           onChange={handleStartDate}
-          className="leaveform-group_date"
-          id="startDate"
+          className='leaveform-group_date'
+          id='startDate'
         />
       </div>
-      <div className="leaveform-group">
-        <label htmlFor="endDate" className="leaveform-group_label">
+      <div className='leaveform-group'>
+        <label htmlFor='endDate' className='leaveform-group_label'>
           End Date
         </label>
         <DatePicker
           selected={endDate}
           onChange={handleEndDate}
-          className="leaveform-group_date"
-          id="endDate"
+          className='leaveform-group_date'
+          id='endDate'
         />
       </div>
-      <div className="leaveform-group">
-        <label htmlFor="reason" className="leaveform-group_label">
+      <div className='leaveform-group'>
+        <label htmlFor='reason' className='leaveform-group_label'>
           Reason for leave
         </label>
         <textarea
-          name="reason"
-          id="reason"
-          cols="30"
-          rows="5"
+          name='reason'
+          id='reason'
+          cols='30'
+          rows='5'
           onChange={(e) => setLeaveReason(e.target.value)}
-          className="leaveform-group_input leaveform-group_textarea"
-        ></textarea>
+          className='leaveform-group_input leaveform-group_textarea'></textarea>
       </div>
-      <button className="leaveform-button">submit</button>
+      <button className='leaveform-button'>submit</button>
       <Snackbar
         open={open}
         autoHideDuration={4000}
         onClose={handleClose}
-        message="Leave Application Submitted"
+        message='Leave Application Submitted'
         // action={action}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       />
     </form>
   );
-  return <div className="leavePage">{content}</div>;
+  return <div className='leavePage'>{content}</div>;
 };
 
 export default LeaveForm;
