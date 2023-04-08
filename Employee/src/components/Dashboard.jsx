@@ -21,7 +21,7 @@ const Dashboard = () => {
 
   console.log(deviceWidth);
   console.log(deviceHeight);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("users"));
   let content;
   if (isSuccess) {
     const allTask = Object.values(task.entities);

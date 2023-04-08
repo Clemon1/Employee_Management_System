@@ -22,7 +22,7 @@ export const taskApiSlice = apiSlice.injectEndpoints({
     }),
     getTasksByUserId: builder.query({
       query: () => {
-        const user = JSON.parse(localStorage.getItem("user"));
+        const user = JSON.parse(localStorage.getItem("users"));
         return `/task/all/${user._id}`;
       },
       transformResponse: (responseData) => {

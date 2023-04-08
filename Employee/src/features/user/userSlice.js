@@ -26,7 +26,7 @@ const userApiSlice = apiSlice.injectEndpoints({
     }),
     getUserById: builder.query({
       query: () => {
-        const user = JSON.parse(localStorage.getItem("user"));
+        const user = JSON.parse(localStorage.getItem("users"));
         return `/employee/${user._id}`;
       },
       transformResponse: (responseData) => {

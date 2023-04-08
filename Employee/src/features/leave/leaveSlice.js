@@ -22,7 +22,7 @@ export const leaveApiSlice = apiSlice.injectEndpoints({
     }),
     getLeaveByUserId: builder.query({
       query: () => {
-        const user = JSON.parse(localStorage.getItem("user"));
+        const user = JSON.parse(localStorage.getItem("users"));
         return `/leave/employee/${user._id}`;
       },
       transformResponse: (responseData) => {

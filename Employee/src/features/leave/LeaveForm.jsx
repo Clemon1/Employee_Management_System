@@ -16,7 +16,7 @@ const LeaveForm = () => {
   const [title, setTitle] = useState("");
 
   const [open, setOpen] = useState(false);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("users"));
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {

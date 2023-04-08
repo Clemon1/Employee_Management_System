@@ -8,7 +8,7 @@ const authSlice = createSlice({
       const { accessToken, foundUser } = action.payload;
       console.log(foundUser);
       localStorage.setItem("token", accessToken);
-      localStorage.setItem("user", JSON.stringify(foundUser));
+      localStorage.setItem("users", JSON.stringify(foundUser));
       state.token = accessToken;
       state.user = foundUser;
     },

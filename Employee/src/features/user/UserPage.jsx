@@ -7,7 +7,7 @@ import { Email, Phone, Wc } from "@mui/icons-material";
 const UserPage = () => {
   const navigate = useNavigate();
   const [sendLogout, { isLoading, isSuccess }] = useSendLogoutMutation();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("users"));
   if (!user) {
     return sendLogout();
   }
