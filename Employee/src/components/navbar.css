@@ -1,0 +1,42 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  position: relative;
+  border-bottom: 2px solid #eaeaea;
+  transition: all 0.4s;
+  z-index: 10;
+}
+.navBar-logo {
+  margin-left: 10px;
+  color: #0e5b92;
+}
+.navBar-hamburger {
+  margin-right: 10px;
+}
+.navBar-menuItems {
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  transition: all 0.4s;
+}
+.navBar-menu {
+  background-color: white;
+  width: 100%;
+}
+.navBar-menu_items {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+.navBar-menu_items:hover {
+  background-color: #f9f9f9;
+}
+@media screen and (min-width: 600px) {
+  .navBar {
+    display: none;
+  }
+}

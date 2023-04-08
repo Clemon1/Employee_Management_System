@@ -19,7 +19,9 @@ const viewAllLeave = async (req, res) => {
 const employeeLeave = async (req, res) => {
   try {
     const employee = await Employees.findById(req.params.id);
-    const findLeave = await leave.find({ employee: employee._id });
+    const findLeave = await leave
+      .find({ employee: employee._id })
+      .populate("employee");
     res.status(200).json(findLeave);
   } catch (err) {
     res.status(500).json(err.message);
@@ -53,7 +55,7 @@ const updateLeave = async (req, res) => {
     const updateLeave = await leave.findByIdAndUpdate(
       id,
       { $set: req.body },
-      { new: true },
+      { new: true }
     );
     res.status(200).json(updateLeave);
   } catch (err) {

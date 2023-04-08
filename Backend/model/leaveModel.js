@@ -10,7 +10,13 @@ const leaveSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
+    title: {
+      type: String,
+      enum: ["Annual", "Medical", "Emergency", "Compassionate"],
+    },
+    fullname: {
+      type: String,
+    },
     date_of_leave: {
       type: Date,
       required: true,
@@ -27,7 +33,7 @@ const leaveSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 const leave = mongoose.model("leave", leaveSchema);
