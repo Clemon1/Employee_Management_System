@@ -25,6 +25,22 @@ body {
   margin: 0;
   background: #efefef;
 }
+/* For WebKit browsers */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0e5b92;
+  border-radius: 5px;
+}
+
+/* For Firefox */
+
 .errmsg {
   display: inline-block;
   background-color: var(--TABLE-BGCOLOR);
@@ -555,6 +571,7 @@ body {
   border: 1px solid #eaeaea;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 .taskReviews-content h2 {
   margin: 0;

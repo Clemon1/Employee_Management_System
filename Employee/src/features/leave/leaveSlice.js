@@ -8,7 +8,7 @@ const initialState = leaveAdapter.getInitialState();
 export const leaveApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getLeave: builder.query({
-      query: () => "/task/all",
+      query: () => "/leave",
       transformResponse: (responseData) => {
         const loadedLeave = responseData.leave.map((leave) => {
           leave.id = leave._id;
@@ -23,7 +23,7 @@ export const leaveApiSlice = apiSlice.injectEndpoints({
     getLeaveByUserId: builder.query({
       query: () => {
         const user = JSON.parse(localStorage.getItem("user"));
-        return `/leave/all/${user._id}`;
+        return `/leave/employee/${user._id}`;
       },
       transformResponse: (responseData) => {
         console.log(responseData);

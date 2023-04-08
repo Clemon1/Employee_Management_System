@@ -6,6 +6,7 @@ import {
   DashboardRounded,
   TaskRounded,
   AccountBoxRounded,
+  AirportShuttleRounded,
 } from "@mui/icons-material";
 
 import React, { useState } from "react";
@@ -52,8 +53,13 @@ const NavBar = () => {
         >
           Profile
         </Link>
+      </div>
+      <div className="navBar-menu_items">
+        <AirportShuttleRounded
+          sx={{ marginRight: "10px", color: "#0e5b92", fontSize: "18px" }}
+        />
         <Link
-          to={"/dash/profile"}
+          to={"/dash/leave"}
           style={{ textDecoration: "none", color: "black" }}
           onClick={toggleMenu}
         >

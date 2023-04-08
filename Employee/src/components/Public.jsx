@@ -4,6 +4,7 @@ import { useLoginMutation } from "../features/auth/authApiSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../features/auth/authSlice";
+import { Snackbar } from "@mui/material";
 
 const Public = () => {
   const userRef = useRef();
@@ -11,6 +12,7 @@ const Public = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,7 +26,12 @@ const Public = () => {
   useEffect(() => {
     setErrMsg("");
   }, [email, password]);
-
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      setOpen(true);
+    }
+    setOpen(false);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -32,6 +39,9 @@ const Public = () => {
         email,
         password,
       }).unwrap();
+      if (accessToken) {
+        setOpen(true);
+      }
       console.log(accessToken, foundUser);
       dispatch(setCredentials({ accessToken, foundUser }));
       setEmail("");
@@ -55,9 +65,6 @@ const Public = () => {
   if (isLoading) return <p>Loading...</p>;
   const content = (
     <section>
-      <header>
-        <h1>Employee Login</h1>
-      </header>
       <main className="login__page">
         <p ref={errRef} className={errClass} aria-live="assertive">
           {errMsg}
@@ -85,6 +92,14 @@ const Public = () => {
           <button className="form__login-button">Login</button>
         </form>
       </main>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        message="Login Successful"
+        // action={action}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      />
     </section>
   );
   return content;

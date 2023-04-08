@@ -6,6 +6,7 @@ import TaskRow from "../features/task/TaskRow";
 import TaskData from "../features/task/TaskData";
 import TaskTable from "../features/task/TaskTable";
 import TaskReview from "../features/task/TaskReview";
+import "./dash.css";
 
 const Dashboard = () => {
   const {
@@ -50,11 +51,13 @@ const Dashboard = () => {
                 {allTask.filter((task) => task.review === true).length}
               </div>
             </div>
-            {allTask
-              .filter((task) => task.review === true)
-              .map((task) => (
-                <TaskReview key={task.id} review={task} />
-              ))}
+            <div className="dashboard-main_right-card">
+              {allTask
+                .filter((task) => task.review === true)
+                .map((task) => (
+                  <TaskReview key={task.id} review={task} />
+                ))}
+            </div>
           </div>
         </div>
       </div>

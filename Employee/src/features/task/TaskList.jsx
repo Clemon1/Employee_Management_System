@@ -17,7 +17,9 @@ const TaskList = () => {
   } else if (isSuccess) {
     const allTask = Object.values(task.entities);
     let table;
-    if (deviceWidth > 1370) {
+    if (deviceWidth < 600) {
+      content = <TaskTable task={allTask} perPage={9} />;
+    } else if (deviceWidth > 1370) {
       content = <TaskTable task={allTask} perPage={13} />;
     } else {
       content = <TaskTable task={allTask} perPage={10} />;

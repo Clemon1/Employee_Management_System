@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import TaskRoundedIcon from "@mui/icons-material/TaskRounded";
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
+import { AirportShuttleRounded } from "@mui/icons-material";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import "./dash.css";
 import LogOut from "./LogOut";
@@ -59,15 +60,16 @@ const DashSideBar = () => {
           Profile
         </Link>
         <Link
-          to={"/dash/profile"}
+          to={"/dash/leave"}
           style={{ textDecoration: "none", color: "black" }}
           className={
-            location.pathname === "/dash/profile"
+            location.pathname === "/dash/leave" ||
+            location.pathname === "/dash/leave/apply"
               ? "activeStyle"
               : "dash-nav__items-link"
           }
         >
-          <AccountBoxRoundedIcon
+          <AirportShuttleRounded
             sx={{ marginRight: "10px", color: "#0e5b92", fontSize: "18px" }}
           />
           Leave

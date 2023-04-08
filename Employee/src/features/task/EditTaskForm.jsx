@@ -1,9 +1,11 @@
 import { useGetTasksQuery, useUpdateTaskMutation } from "./taskSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Snackbar } from "@mui/material";
 
 const EditTaskForm = () => {
   const [title, setTitle] = useState("");
+  const [open, setOpen] = useState(false);
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [priority, setPriority] = useState("");
@@ -21,10 +23,11 @@ const EditTaskForm = () => {
       isLoading,
     }),
   });
+ 
   const onSaveTaskClick = async (e) => {
     e.preventDefault;
     try {
-      await updateTask({
+      const response = await updateTask({
         id: task?.id,
         title,
         description,
@@ -34,6 +37,7 @@ const EditTaskForm = () => {
       setTitle("");
       setDescription("");
       setStatus("");
+      
       navigate(`/dash/task/${taskId}`);
     } catch (err) {
       console.log("Failed to save task", err);
@@ -131,6 +135,7 @@ const EditTaskForm = () => {
           <button>Save Changes</button>
         </div>
       </form>
+      
     </section>
   );
 };

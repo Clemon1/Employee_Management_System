@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import { useUpdateTaskMutation } from "./taskSlice";
-
+import { Snackbar } from "@mui/material";
 const SubmitTaskReview = ({ id }) => {
   const [review, setReview] = useState(false);
+  const [open, setOpen] = useState(false);
   const [reviewComment, setReviewComment] = useState("");
 
   const [updateTask, { isLoading }] = useUpdateTaskMutation();
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      setOpen(true);
+    }
+    setOpen(false);
+  };
   const onSaveClicked = async (e) => {
     e.preventDefault();
     try {
       // console.log("this is review before submit", review);
-      await updateTask({ id, review, reviewComment }).unwrap();
+      const response = await updateTask({ id, review, reviewComment }).unwrap();
       // console.log("task review value", review);
+      if (response) {
+        setOpen(true);
+      }
       setReview(false);
       setReviewComment("");
     } catch (err) {
@@ -41,6 +51,14 @@ const SubmitTaskReview = ({ id }) => {
           <button className="taskStatus-button">Submit</button>
         </div>
       </form>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        message="Review Submitted Successfully"
+        // action={action}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      />
     </div>
   );
 };

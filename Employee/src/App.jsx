@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Layout from "./components/Layout";
 import Public from "./components/Public";
 import DashLayout from "./components/DashLayout";
@@ -8,14 +9,24 @@ import Task from "./features/task/Task";
 import EditTaskForm from "./features/task/EditTaskForm";
 import TaskList from "./features/task/TaskList";
 import UserPage from "./features/user/UserPage";
+import LeavePage from "./features/leave/LeavePage";
+import LeaveForm from "./features/leave/LeaveForm";
+import Leave from "./features/leave/Leave";
+import Protected from "./Protected";
 import Test from "./Test";
 
 function App() {
+  const User = JSON.parse(localStorage.getItem("user"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  if (User) {
+    setIsLoggedIn(true);
+  }
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Public />} />
-        <Route path="test" element={<Test />} />
+        {/* <Route path="test" element={<Test />} /> */}
+        {/* Protected routes */}
         <Route path="dash" element={<DashLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="task">
@@ -25,6 +36,11 @@ function App() {
           </Route>
           <Route path="profile">
             <Route index element={<UserPage />} />
+          </Route>
+          <Route path="leave">
+            <Route index element={<LeavePage />} />
+            <Route path="apply" element={<LeaveForm />} />
+            <Route path=":id" element={<Leave />} />
           </Route>
         </Route>
       </Route>

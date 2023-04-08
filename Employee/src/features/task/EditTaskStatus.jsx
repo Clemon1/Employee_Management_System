@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import { useUpdateTaskMutation } from "./taskSlice";
+import { Snackbar } from "@mui/material";
 
 const EditTaskStatus = ({ id }) => {
   const [status, setStatus] = useState("");
+  const [open, setOpen] = useState(false);
 
   const [updateTask, { isLoading }] = useUpdateTaskMutation();
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      setOpen(true);
+    }
+    setOpen(false);
+  };
   const onSaveClicked = async (e) => {
     e.preventDefault();
     try {
-      await updateTask({ id, completion: status }).unwrap();
+      const response = await updateTask({ id, completion: status }).unwrap();
+      if (response) {
+        setOpen(true);
+      }
       setStatus("");
     } catch (err) {
       console.log(err);
@@ -47,6 +58,15 @@ const EditTaskStatus = ({ id }) => {
           <button className="taskStatus-button">Save Changes</button>
         </div>
       </form>
+
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        message="Status Updated Successfully"
+        // action={action}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      />
     </div>
   );
 };
