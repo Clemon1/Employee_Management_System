@@ -28,6 +28,8 @@ import { MdTimeToLeave } from "react-icons/md";
 import { RiBuilding2Fill } from "react-icons/ri";
 import { useCountEmployeeQuery } from "../features/employeeSlice";
 import { useGetAllDepartmentQuery } from "../features/departmentSlice";
+import moment from "moment";
+
 import { useGetAllTaskQuery } from "../features/TaskSlide";
 import { useGetAllLeaveQuery } from "../features/LeaveSlide";
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -44,7 +46,7 @@ import {
   Legend,
 } from "chart.js";
 
-const Dashboard = () => {
+const Dashboard = ({ slide }) => {
   const { data: employee, isError, isLoading } = useCountEmployeeQuery();
   const { data: department } = useGetAllDepartmentQuery();
   const { data: task } = useGetAllTaskQuery();
@@ -73,14 +75,14 @@ const Dashboard = () => {
       },
     },
   };
-  const labels = ["January", "February", "March", "April", "May", "June"];
+  const labels = moment.monthsShort();
   const data = {
     labels,
     datasets: [
       {
         fill: true,
         label: "Number of Employees",
-        data: [20, 30, 60, 49, 38, 19],
+        data: [employee && employee.allEmp.length],
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "#48cae4",
       },
@@ -107,7 +109,7 @@ const Dashboard = () => {
   console.log(employee);
   return (
     <Flex width={"100%"} height={"fit-content"}>
-      <Sidebar />
+      <Sidebar slide={slide} />
       <Box
         width={["100%", "100%", "100%", "100%", "82%"]}
         marginLeft={[0, 0, 0, 0, "243px"]}
@@ -269,7 +271,7 @@ const Dashboard = () => {
               rounded={8}
               bg={"#ffffff"}
               padding={4}>
-              <Line options={options} data={data} />
+              <Line options={options} data={data} datasetIdKey='' />
             </Flex>
           </Flex>
           {/* Next Section */}

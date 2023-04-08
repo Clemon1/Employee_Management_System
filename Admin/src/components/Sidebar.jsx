@@ -18,7 +18,7 @@ import { SiBuildkite } from "react-icons/si";
 import { BsCalendar2Minus } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { logOut } from "../features/authSlice";
-const Sidebar = () => {
+const Sidebar = ({ slide }) => {
   let activeStyle = {
     width: "100%",
     color: "#00bac7",
@@ -35,6 +35,7 @@ const Sidebar = () => {
       bg={"#051724"}
       position={"fixed"}
       zIndex={1000}
+      transform={slide ? "translateX(309px)" : "translateX(0px)"}
       py={4}
       gap={8}
       px={4}

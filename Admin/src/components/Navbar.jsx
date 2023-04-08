@@ -15,6 +15,7 @@ import { BiSearch } from "react-icons/bi";
 const Navbar = () => {
   const User = useSelector((state) => state.auth.User);
   const [key, setKey] = useState("");
+  const [slide, setSlide] = useState(false);
   const navigate = useNavigate();
   const handleSearch = (e) => {
     e.preventDefault();
@@ -35,8 +36,12 @@ const Navbar = () => {
       zIndex={100}
       boxShadow={"lg"}
       py={4}>
-      <Button display={["block", "block", "block", "block", "none"]}>=</Button>
-      <Flex width={"70%"}>
+      <Button
+        onClick={() => setSlide(!slide)}
+        display={["block", "block", "block", "block", "none"]}>
+        =
+      </Button>
+      <Flex width={["78%", "76%", "80%", "80%", "70%"]}>
         <form onSubmit={handleSearch}>
           <HStack
             width={["16rem", "20rem", "29rem", "30rem", "42rem"]}
