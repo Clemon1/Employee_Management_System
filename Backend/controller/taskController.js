@@ -56,12 +56,25 @@ const employeeTask = async (req, res) => {
     const tasks = await Task.find({ employee: employeeId }).populate(
       "employee"
     );
-
     res.status(200).json(tasks);
   } catch (err) {
     res.status(400).json(err?.message);
   }
 };
+// Employee own specific task
+const empViewTask = async (req, res) => {
+  try {
+    const singleEmployee = await Employees.findById(req.params.id);
+
+    const findTask = await Task.find({ employee: singleEmployee._id }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(findTask);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
 //Create and Assign task for Employee
 const createTask = async (req, res) => {
   try {
@@ -131,6 +144,7 @@ module.exports = {
   viewTask, // For Employees task dashboard
   createMany, //create bulk task
   employeeTask,
+  empViewTask,
   updateTask,
   deleteTask,
 };

@@ -51,6 +51,20 @@ const getSingleEmployees = async (req, res) => {
   }
 };
 
+// Employee own specific task
+const empViewTask = async (req, res) => {
+  try {
+    const singleEmployee = await Employees.findById(req.params.id);
+
+    const findTask = await Task.find({ employee: singleEmployee._id }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(findTask);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
 // Search Employee
 const searchEmp = async (req, res) => {
   try {
@@ -164,6 +178,7 @@ const deleteEmployee = async (req, res) => {
 module.exports = {
   getAllEmployees,
   getSingleEmployees,
+  empViewTask,
   createEmployee,
   searchEmp,
   loginEmployee,

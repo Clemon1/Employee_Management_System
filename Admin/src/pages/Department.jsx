@@ -29,11 +29,10 @@ const Department = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Flex width={"100%"} justifyContent={"center"} height={"100vh"} p={5}>
@@ -52,37 +51,34 @@ const Department = () => {
             <Flex
               flexWrap={"wrap"}
               gap={4}
+              bg={"#edf2f9"}
               width={"100%"}
-              height={"56vh"}
-              marginBottom={4}
-            >
+              height={["90vh", "92vh", "90vh", "70vh", "56vh"]}
+              marginBottom={4}>
               {isLoading && (
                 <Flex
                   width={"100%"}
                   height={"56vh"}
                   justifyContent={"center"}
-                  alignItems={"center"}
-                >
+                  alignItems={"center"}>
                   <Spinner thickness='4px' color='blue.500' size='xl' />
                 </Flex>
               )}
               {data &&
                 data.alldepartment.map((department) => (
                   <Card
-                    width={"32%"}
+                    width={["50%", "49%", "47%", "47%", "32%"]}
                     height={"10rem"}
                     bg={"#ffffff"}
                     rounded={9}
                     key={department._id}
-                    boxShadow={"lg"}
-                  >
+                    boxShadow={"lg"}>
                     <CardBody>
                       <Stack mt='6' spacing='3'>
                         <Text
                           fontSize={20}
                           fontWeight={700}
-                          wordBreak={"break-word"}
-                        >
+                          wordBreak={"break-word"}>
                           {department.name}
                         </Text>
                         <Link to={`/department/${department._id}`}>
@@ -91,8 +87,7 @@ const Department = () => {
                             width={100}
                             fontSize={18}
                             bg={"#051724"}
-                            color={"rgb(0, 186, 199)"}
-                          >
+                            color={"rgb(0, 186, 199)"}>
                             Open
                           </Button>
                         </Link>
@@ -105,8 +100,7 @@ const Department = () => {
                   width={"100%"}
                   height={"56vh"}
                   justifyContent={"center"}
-                  alignItems={"center"}
-                >
+                  alignItems={"center"}>
                   <Text fontSize={25} fontWeight={500}>
                     Error getting all department
                   </Text>
@@ -118,8 +112,7 @@ const Department = () => {
               width={"100%"}
               justifyContent={"center"}
               alignItems={"center"}
-              gap={3}
-            >
+              gap={3}>
               {page === 1 ? (
                 <Button rounded={100} width={30} disabled>
                   <Icon as={IoIosArrowBack} />
@@ -132,8 +125,7 @@ const Department = () => {
                   color={"#ffffff"}
                   _hover={{ bg: "#051724 !important" }}
                   onClick={() => setPage(page - 1)}
-                  isLoading={isFetching}
-                >
+                  isLoading={isFetching}>
                   <Icon as={IoIosArrowBack} />
                 </Button>
               )}
@@ -154,8 +146,7 @@ const Department = () => {
                   color={"#ffffff"}
                   _hover={{ bg: "#051724 !important" }}
                   onClick={() => setPage(page + 1)}
-                  isLoading={isFetching}
-                >
+                  isLoading={isFetching}>
                   <Icon as={IoIosArrowForward} />
                 </Button>
               )}

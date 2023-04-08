@@ -24,11 +24,10 @@ const Search = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Box width={"100%"} height={"100vh"} padding={5}>
@@ -38,8 +37,7 @@ const Search = () => {
               wrap={"wrap"}
               justify={"flex-start"}
               gap={5}
-              rowGap={"4rem"}
-            >
+              rowGap={"4rem"}>
               {data && data.length === 0 && (
                 <HStack width={"100%"} height={"60vh"} justify={"center"}>
                   <Text fontSize={25} fontWeight={600}>
@@ -55,8 +53,7 @@ const Search = () => {
                     width={"15.2rem"}
                     borderRadius={"33% 1%"}
                     bg={"#ffffff"}
-                    boxShadow={"lg"}
-                  >
+                    boxShadow={"lg"}>
                     <VStack spacing={20}>
                       <Avatar
                         position={"absolute"}
@@ -73,8 +70,7 @@ const Search = () => {
                             noOfLines={[1]}
                             fontSize={20}
                             marginBottom={3}
-                            fontWeight={600}
-                          >
+                            fontWeight={600}>
                             {emp.fullname}
                           </Text>
                           <Text
@@ -84,16 +80,14 @@ const Search = () => {
                             textOverflow={"ellipsis"}
                             fontSize={17}
                             marginBottom={3}
-                            fontWeight={500}
-                          >
+                            fontWeight={500}>
                             {emp.email}
                           </Text>
                           <Text
                             noOfLines={[1]}
                             fontSize={17}
                             marginBottom={3}
-                            fontWeight={500}
-                          >
+                            fontWeight={500}>
                             {emp.department.name}
                           </Text>
                         </VStack>

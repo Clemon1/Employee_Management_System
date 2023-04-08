@@ -30,11 +30,10 @@ const Attendance = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Box width={"100%"} height={"100vh"} padding={5}>
@@ -44,8 +43,7 @@ const Attendance = () => {
             bg={"#ffffff"}
             padding={4}
             boxShadow={"lg"}
-            rounded={5}
-          >
+            rounded={5}>
             <Flex width={"100%"} gap={2}>
               <form>
                 <Flex width={"100%"} gap={2}>
@@ -71,8 +69,7 @@ const Attendance = () => {
                         height={"30vh"}
                         width={"100%"}
                         justify={"center"}
-                        align={"center"}
-                      >
+                        align={"center"}>
                         <Text fontSize={23} align={"center"}>
                           No attendance record found
                         </Text>
@@ -111,8 +108,7 @@ const Attendance = () => {
                               variant='solid'
                               colorScheme='green'
                               padding={2}
-                              rounded={9}
-                            >
+                              rounded={9}>
                               {data.attendance}
                             </Badge>
                           )}
@@ -121,8 +117,7 @@ const Attendance = () => {
                               variant='solid'
                               colorScheme='red'
                               padding={2}
-                              rounded={9}
-                            >
+                              rounded={9}>
                               {data.attendance}
                             </Badge>
                           )}

@@ -1,7 +1,7 @@
 {
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "workbench.settings.openDefaultSettings": false,
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Night Owl (No Italics)",
   "workbench.colorCustomizations": {},
   "workbench.preferredDarkColorTheme": "Material Theme Ocean",
   "workbench.preferredHighContrastColorTheme": "Material Theme Ocean"

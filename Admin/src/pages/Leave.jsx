@@ -29,11 +29,10 @@ const Leave = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
 
         <Box width={"100%"} height={"100vh"} padding={5}>
@@ -44,8 +43,7 @@ const Leave = () => {
             <Table
               height={"fit-content"}
               variant='striped'
-              colorScheme={"messenger"}
-            >
+              colorScheme={"messenger"}>
               <Thead>
                 <Tr>
                   <Th>Profile Picture</Th>
@@ -73,8 +71,7 @@ const Leave = () => {
                           width={"150px"}
                           whiteSpace={"nowrap"}
                           overflow={"hidden"}
-                          textOverflow={"ellipsis"}
-                        >
+                          textOverflow={"ellipsis"}>
                           {leave.reason}
                         </Text>
                       </Td>
@@ -90,8 +87,7 @@ const Leave = () => {
                             rounded={5}
                             p={1}
                             variant='solid'
-                            colorScheme='blue'
-                          >
+                            colorScheme='blue'>
                             {leave.status}
                           </Badge>
                         </Td>
@@ -102,8 +98,7 @@ const Leave = () => {
                             rounded={5}
                             p={1}
                             variant='solid'
-                            colorScheme='green'
-                          >
+                            colorScheme='green'>
                             {leave.status}
                           </Badge>
                         </Td>
@@ -114,8 +109,7 @@ const Leave = () => {
                             rounded={5}
                             p={1}
                             variant='solid'
-                            colorScheme='red'
-                          >
+                            colorScheme='red'>
                             {leave.status}
                           </Badge>
                         </Td>
@@ -125,8 +119,7 @@ const Leave = () => {
                           <Button
                             rounded={"xl"}
                             variant={"solid"}
-                            colorScheme={"blue"}
-                          >
+                            colorScheme={"blue"}>
                             <Icon as={BiEditAlt} fontSize={18} />
                           </Button>
                         </Link>

@@ -69,11 +69,10 @@ const CreateTask = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={"82%"}
-        marginLeft={"243px"}
+        width={["100%", "100%", "100%", "100%", "82%"]}
+        marginLeft={[0, 0, 0, 0, "243px"]}
         height={"fit-content"}
-        bg={"#edf2f9"}
-      >
+        bg={"#edf2f9"}>
         <Navbar />
         <Flex width={"100%"} justify={"center"} height={"fit-content"}>
           <Box width={"60%"} height={"100vh"} padding={5}>
@@ -83,8 +82,7 @@ const CreateTask = () => {
                 height='100%'
                 rounded={5}
                 bg={"#ffffff"}
-                padding={5}
-              >
+                padding={5}>
                 <Text fontWeight={700} fontSize='25' marginBottom={4}>
                   Assingn Task
                 </Text>
@@ -108,8 +106,7 @@ const CreateTask = () => {
                       fontWeight={600}
                       border={"2px #051724 solid !important"}
                       placeholder='Select Employee'
-                      onChange={(e) => setEmployee(e.target.value)}
-                    >
+                      onChange={(e) => setEmployee(e.target.value)}>
                       {Employee &&
                         Employee.empAll.map((emp) => (
                           <option fontWeight={600} value={emp._id}>
@@ -124,8 +121,7 @@ const CreateTask = () => {
                       fontWeight={600}
                       border={"2px #051724 solid !important"}
                       placeholder='Select Assigner'
-                      onChange={(e) => setAsignedBy(e.target.value)}
-                    >
+                      onChange={(e) => setAsignedBy(e.target.value)}>
                       {Employee &&
                         Employee.empAll.map((emp) => (
                           <option fontWeight={600} value={emp._id}>
@@ -164,8 +160,9 @@ const CreateTask = () => {
                       border={"2px #051724 solid !important"}
                       fontWeight={600}
                       height={40}
-                      onChange={(e) => setDescription(e.target.value)}
-                    ></Textarea>
+                      onChange={(e) =>
+                        setDescription(e.target.value)
+                      }></Textarea>
                   </FormControl>
                 </Flex>
 
@@ -179,8 +176,7 @@ const CreateTask = () => {
                     background: "#f4f4f4",
                     border: "2px #051724 solid",
                     fontWeight: 700,
-                  }}
-                >
+                  }}>
                   Submit
                 </Button>
               </Box>
