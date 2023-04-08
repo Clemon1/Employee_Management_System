@@ -1,34 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Layout from "./components/Layout";
+import Public from "./components/Public";
+import DashLayout from "./components/DashLayout";
+import Dashboard from "./components/Dashboard";
+import Task from "./features/task/Task";
+// import EditTask from "./features/task/EditTask";
+import EditTaskForm from "./features/task/EditTaskForm";
+import TaskList from "./features/task/TaskList";
+import UserPage from "./features/user/UserPage";
+import LeavePage from "./features/leave/LeavePage";
+import LeaveForm from "./features/leave/LeaveForm";
+import Leave from "./features/leave/Leave";
+import Protected from "./Protected";
+import Test from "./Test";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const User = JSON.parse(localStorage.getItem("user"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  if (User) {
+    setIsLoggedIn(true);
+  }
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Public />} />
+        {/* <Route path="test" element={<Test />} /> */}
+        {/* Protected routes */}
+        <Route path="dash" element={<DashLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="task">
+            <Route index element={<TaskList />} />
+            <Route path=":taskId" element={<Task />} />
+            <Route path="edit/:taskId" element={<EditTaskForm />} />
+          </Route>
+          <Route path="profile">
+            <Route index element={<UserPage />} />
+          </Route>
+          <Route path="leave">
+            <Route index element={<LeavePage />} />
+            <Route path="apply" element={<LeaveForm />} />
+            <Route path=":id" element={<Leave />} />
+          </Route>
+        </Route>
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;

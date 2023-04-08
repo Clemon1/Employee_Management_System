@@ -20,10 +20,21 @@ const TaskSchema = new mongoose.Schema(
     },
     completion: {
       type: String,
-      enum: ["Pending", "Completed", "Late Delivery"],
+      enum: ["Pending", "Completed", "Late Delivery", "Started"],
       default: "Pending",
     },
-
+    reviewComment: {
+      type: String,
+    },
+    review: {
+      type: Boolean,
+      default: false,
+    },
+    priority: {
+      type: String,
+      enum: ["High", "Medium", "Low"],
+      default: "Low",
+    },
     dateAssigned: {
       type: Date,
       required: true,
@@ -35,7 +46,7 @@ const TaskSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 const Task = mongoose.model("Task", TaskSchema);
