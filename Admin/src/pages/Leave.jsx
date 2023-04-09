@@ -115,7 +115,7 @@ const Leave = () => {
                         </Td>
                       )}
                       <Td>
-                        <Link>
+                        <Link to={`/leave-request/${leave._id}`}>
                           <Button
                             rounded={"xl"}
                             variant={"solid"}

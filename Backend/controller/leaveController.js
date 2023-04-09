@@ -21,7 +21,8 @@ const employeeLeave = async (req, res) => {
     const employee = await Employees.findById(req.params.id);
     const findLeave = await leave
       .find({ employee: employee._id })
-      .populate("employee");
+      .populate("employee")
+      .exec();
     res.status(200).json(findLeave);
   } catch (err) {
     res.status(500).json(err.message);
@@ -41,7 +42,10 @@ const createLeave = async (req, res) => {
 // Find by ID
 const singleLeave = async (req, res) => {
   try {
-    const singleEmpLeave = await leave.findById(req.params.id);
+    const singleEmpLeave = await leave
+      .findById(req.params.id)
+      .populate("employee")
+      .exec();
     res.status(200).json(singleEmpLeave);
   } catch (err) {
     res.status(500).json(err.message);
@@ -55,7 +59,7 @@ const updateLeave = async (req, res) => {
     const updateLeave = await leave.findByIdAndUpdate(
       id,
       { $set: req.body },
-      { new: true }
+      { new: true },
     );
     res.status(200).json(updateLeave);
   } catch (err) {

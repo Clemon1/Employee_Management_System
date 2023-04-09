@@ -24,11 +24,15 @@ export const leaveAPI = createApi({
       invalidatesTags: ["Leaves"],
     }),
     updateLeave: builder.mutation({
-      query: ({ id, ...data }) => ({
-        url: `/${id}`,
-        method: "PUT",
-        body: data,
-      }),
+      query(data) {
+        const { id, ...body } = data;
+        return {
+          url: `/${id}`,
+          method: "PUT",
+          body,
+        };
+      },
+
       invalidatesTags: ["Leaves"],
     }),
   }),

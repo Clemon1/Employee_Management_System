@@ -26,6 +26,7 @@ const CreateTask = () => {
   const [description, setDescription] = useState("");
   const [employee, setEmployee] = useState("");
   const [asignedBy, setAsignedBy] = useState("");
+  const [priority, setPriority] = useState("");
   const [dateAssigned, setDateAssigned] = useState("");
   const [dateToDeliver, setDateToDeliver] = useState("");
   const toast = useToast();
@@ -36,6 +37,7 @@ const CreateTask = () => {
     description,
     employee,
     asignedBy,
+    priority,
     dateAssigned,
     dateToDeliver,
   };
@@ -128,6 +130,24 @@ const CreateTask = () => {
                             {emp.fullname}
                           </option>
                         ))}
+                    </Select>
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel fontSize={18}>Priority:</FormLabel>
+                    <Select
+                      fontWeight={600}
+                      border={"2px #051724 solid !important"}
+                      placeholder='Select Priority'
+                      onChange={(e) => setPriority(e.target.value)}>
+                      <option fontWeight={600} value={"Low"}>
+                        Low
+                      </option>
+                      <option fontWeight={600} value={"Medium"}>
+                        Medium
+                      </option>
+                      <option fontWeight={600} value={"High"}>
+                        High
+                      </option>
                     </Select>
                   </FormControl>
                 </Flex>

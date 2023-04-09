@@ -24,6 +24,7 @@ import CreateTask from "./pages/CreateTask";
 import Attendance from "./pages/Attendance";
 import Search from "./pages/Search";
 import ErrorPage from "./pages/404";
+import SingleLeave from "./pages/singleLeave";
 
 function App() {
   const User = useSelector((state) => state.auth.User);
@@ -61,6 +62,10 @@ function App() {
         />
 
         <Route path='/leave-request' element={User ? <Leave /> : <Login />} />
+        <Route
+          path='/leave-request/:id'
+          element={User ? <SingleLeave /> : <Login />}
+        />
         <Route path='/search/:key' element={User ? <Search /> : <Login />} />
 
         <Route path='/settings' element={User ? <Settings /> : <Login />} />
