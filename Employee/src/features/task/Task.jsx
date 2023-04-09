@@ -18,7 +18,7 @@ const Task = () => {
   let content;
   if (isLoading) {
     content = <h3>Loading...</h3>;
-    console.log(task);
+    // console.log(task);
   } else if (isSuccess) {
     content = (
       <div className="taskPage-container">

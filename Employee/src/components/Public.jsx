@@ -39,9 +39,7 @@ const Public = () => {
         email,
         password,
       }).unwrap();
-      if (accessToken) {
-        setOpen(true);
-      }
+
       console.log(accessToken, foundUser);
       dispatch(setCredentials({ accessToken, foundUser }));
       setEmail("");
@@ -58,17 +56,18 @@ const Public = () => {
       } else {
         setErrMsg(err.data?.message);
       }
+      setOpen(true);
       errRef.current.focus();
     }
   };
-  const errClass = errMsg ? "errmsg" : "offscreen";
+  // const errClass = errMsg ? "errmsg" : "offscreen";
   if (isLoading) return <p>Loading...</p>;
   const content = (
     <section>
       <main className="login__page">
-        <p ref={errRef} className={errClass} aria-live="assertive">
+        {/* <p ref={errRef} className={errClass} aria-live="assertive">
           {errMsg}
-        </p>
+        </p> */}
         <form className="form__login" onSubmit={handleSubmit}>
           <div className="form__login-group">
             <label htmlFor="email">Email</label>
@@ -96,7 +95,7 @@ const Public = () => {
         open={open}
         autoHideDuration={4000}
         onClose={handleClose}
-        message="Login Successful"
+        message={errMsg}
         // action={action}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       />

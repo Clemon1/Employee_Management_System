@@ -26,7 +26,7 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         return `/task/all/${user._id}`;
       },
       transformResponse: (responseData) => {
-        console.log(responseData);
+        // console.log(responseData);
         const loadedTask = responseData.map((task) => {
           task.id = task._id;
           return task;

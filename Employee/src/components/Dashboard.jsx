@@ -17,10 +17,8 @@ const Dashboard = () => {
     error,
   } = useGetTasksByUserIdQuery();
   const deviceWidth = window.innerWidth;
-  const deviceHeight = window.innerHeight;
+  // const deviceHeight = window.innerHeight;
 
-  console.log(deviceWidth);
-  console.log(deviceHeight);
   const user = JSON.parse(localStorage.getItem("users"));
   let content;
   if (isSuccess) {

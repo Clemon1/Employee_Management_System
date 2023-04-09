@@ -125,11 +125,13 @@ body {
 .activeStyle {
   background-color: white;
   display: flex;
+  color: black;
   align-items: center;
   justify-content: start;
   padding: 10px 30px;
   border-radius: 5px;
   font-size: 15px;
+  margin: 5px 0;
 }
 /* dash container */
 .top-bar {

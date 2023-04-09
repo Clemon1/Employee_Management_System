@@ -36,7 +36,7 @@ const Leave = () => {
       const Date = parseISO(date);
       return format(Date, "PP");
     };
-    console.log(singleLeave);
+    // console.log(singleLeave);
     content = (
       <div className="leaveSingle">
         <div className="leaveSingle-main">

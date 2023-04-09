@@ -89,7 +89,7 @@ const LeavePage = () => {
         <div className="leavePage-content_table">{table}</div>
       </div>
     );
-    console.log(leave);
+    // console.log(leave);
   }
   return (
     <div className="leavePage">

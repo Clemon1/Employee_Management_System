@@ -18,7 +18,7 @@ const DashSideBar = () => {
         <h1>Scylla</h1>
         <Link
           to={"/dash"}
-          style={{ textDecoration: "none", color: "black" }}
+          style={{ textDecoration: "none" }}
           className={
             location.pathname === "/dash"
               ? "activeStyle"
@@ -32,7 +32,7 @@ const DashSideBar = () => {
         </Link>
         <Link
           to={"/dash/task"}
-          style={{ textDecoration: "none", color: "black" }}
+          style={{ textDecoration: "none" }}
           className={
             location.pathname === "/dash/task" ||
             location.pathname === `/dash/task/${id}`
@@ -47,7 +47,7 @@ const DashSideBar = () => {
         </Link>
         <Link
           to={"/dash/profile"}
-          style={{ textDecoration: "none", color: "black" }}
+          style={{ textDecoration: "none" }}
           className={
             location.pathname === "/dash/profile"
               ? "activeStyle"
@@ -61,7 +61,7 @@ const DashSideBar = () => {
         </Link>
         <Link
           to={"/dash/leave"}
-          style={{ textDecoration: "none", color: "black" }}
+          style={{ textDecoration: "none" }}
           className={
             location.pathname === "/dash/leave" ||
             location.pathname === "/dash/leave/apply"

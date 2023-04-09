@@ -11,7 +11,7 @@ const UserPage = () => {
   if (!user) {
     return sendLogout();
   }
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     if (isSuccess) navigate("/");
   }, [isSuccess, navigate]);

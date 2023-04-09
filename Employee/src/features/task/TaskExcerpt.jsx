@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useGetTasksQuery } from "./taskSlice";
 import { parseISO, formatDistanceToNow } from "date-fns";
 
@@ -12,9 +12,7 @@ const TaskExcerpt = ({ taskId }) => {
     }),
   });
 
-  useEffect(() => {
-    console.log("this is task excerpt", task);
-  }, [isSuccess]);
+
   let content;
   if (isLoading) content = <h2>Loading...</h2>;
   if (isSuccess) {

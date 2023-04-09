@@ -26,7 +26,7 @@ export const leaveApiSlice = apiSlice.injectEndpoints({
         return `/leave/employee/${user._id}`;
       },
       transformResponse: (responseData) => {
-        console.log(responseData);
+        // console.log(responseData);
         const loadedLeave = responseData.map((leave) => {
           leave.id = leave._id;
           return leave;
