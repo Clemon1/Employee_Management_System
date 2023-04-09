@@ -169,7 +169,7 @@ body {
   border: 1px solid #0e5b92;
   position: relative;
   background-color: #0e5b9241;
-  border-radius: 5px;
+  border-radius: 17px;
 }
 .taskrow-left_img {
   width: 50px;
@@ -202,7 +202,7 @@ body {
   justify-content: space-around;
   width: 100%;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 17px;
   /* padding: 20px; */
   height: 100%;
 }
@@ -346,6 +346,7 @@ body {
   width: 100%;
   background-color: white;
   font-size: 0.9rem;
+  border-radius: 17px;
 }
 .table-head {
   width: 100%;
@@ -387,6 +388,7 @@ body {
 }
 .taskTable {
   width: 100%;
+  border-radius: 17px;
   height: 100%;
   background-color: white;
   display: flex;
@@ -624,6 +626,7 @@ body {
   .dashboard-main_right {
     width: 20%;
     height: 100%;
+    border-radius: 17px;
   }
   .dashboard-main_left-top {
     height: 200px;

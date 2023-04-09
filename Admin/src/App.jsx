@@ -50,7 +50,7 @@ function App() {
           path='/tasks/create'
           element={User ? <CreateTask /> : <Login />}
         />
-        <Route path='/attendance' element={User ? <Attendance /> : <Login />} />
+        {/* <Route path='/attendance' element={User ? <Attendance /> : <Login />} /> */}
         <Route path='/department' element={User ? <Department /> : <Login />} />
         <Route
           path='/department/:id'

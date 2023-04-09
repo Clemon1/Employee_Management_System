@@ -15,7 +15,7 @@ const TaskTable = ({ task, perPage }) => {
 
   const paginatedData = task.slice(
     (currentPage - 1) * perPage,
-    currentPage * perPage
+    currentPage * perPage,
   );
   let totalPages = task.length / perPage;
   if (totalPages % 1 != 0) {
@@ -27,11 +27,10 @@ const TaskTable = ({ task, perPage }) => {
   }
 
   const pageButtons = (
-    <div className="pageButtons">
+    <div className='pageButtons'>
       <IconButton
         disabled={currentPage === 1}
-        onClick={() => handlePagination(currentPage - 1)}
-      >
+        onClick={() => handlePagination(currentPage - 1)}>
         <KeyboardArrowLeft />
       </IconButton>
       <span>
@@ -39,43 +38,42 @@ const TaskTable = ({ task, perPage }) => {
       </span>
       <IconButton
         disabled={currentPage === Math.ceil(task.length / perPage)}
-        onClick={() => handlePagination(currentPage + 1)}
-      >
+        onClick={() => handlePagination(currentPage + 1)}>
         <KeyboardArrowRight />
       </IconButton>
     </div>
   );
   const table = (
-    <div className="taskTable">
-      <table className="table">
-        <thead className="table-head">
-          <tr className="table-row">
-            <td className="table-cell table-cell_title">Task</td>
-            <td className="table-cell table-cell_status">Status</td>
-            <td className="table-cell table-cell_priority">Priority</td>
-            <td className="table-cell table-cell_date">Due Date</td>
+    <div className='taskTable'>
+      <table className='table' style={{ borderRadius: "17px !important" }}>
+        <thead className='table-head'>
+          <tr className='table-row'>
+            <td className='table-cell table-cell_title'>Task</td>
+            <td className='table-cell table-cell_status'>Status</td>
+            <td className='table-cell table-cell_priority'>Priority</td>
+            <td className='table-cell table-cell_date'>Due Date</td>
             {/* <td className="table-cell">Last Update</td> */}
-            <td className="table-cell table-cell_actions">Edit</td>
+            <td className='table-cell table-cell_actions'>Edit</td>
           </tr>
         </thead>
-        <tbody className="table-body">
+        <tbody className='table-body'>
           {paginatedData.map((item) => (
-            <tr className="table-row" key={item.id}>
-              <td className="table-cell table-cell_title">{item?.title}</td>
-              <td className="table-cell table-cell_status">
+            <tr className='table-row' key={item.id}>
+              <td className='table-cell table-cell_title'>{item?.title}</td>
+              <td className='table-cell table-cell_status'>
                 {<TaskStatus status={item.completion} />}
               </td>
-              <td className="table-cell table-cell_priority">
+              <td className='table-cell table-cell_priority'>
                 {<TaskPriority priority={item.priority} />}
               </td>
-              <td className="table-cell table-cell_date">
+              <td className='table-cell table-cell_date'>
                 {<TaskDate date={item.dateToDeliver} />}
               </td>
               {/* <td className="table-cell table-cell_date">
                 {<TaskDate date={item.updatedAt} />}
               </td> */}
-              <td className="table-cell table-cell_actions">
-                <EditTaskButton id={item.id} className="editTaskIcon" />
+              <td className='table-cell table-cell_actions'>
+                <EditTaskButton id={item.id} className='editTaskIcon' />
               </td>
             </tr>
           ))}

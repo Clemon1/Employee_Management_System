@@ -101,14 +101,14 @@ const Sidebar = ({ slide }) => {
             Tasks
           </ListItem>
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to='/attendance'
           style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           <ListItem px={8} py={2} display={"flex"} gap={1}>
             <Icon alignSelf={"center"} fontSize={"24px"} as={FiBriefcase} />{" "}
             Attendance
           </ListItem>
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to='/department'
           style={({ isActive }) => (isActive ? activeStyle : undefined)}>
