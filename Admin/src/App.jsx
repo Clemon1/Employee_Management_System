@@ -25,6 +25,7 @@ import Attendance from "./pages/Attendance";
 import Search from "./pages/Search";
 import ErrorPage from "./pages/404";
 import SingleLeave from "./pages/singleLeave";
+import UpdateEmployee from "./pages/updateEmployee";
 
 function App() {
   const User = useSelector((state) => state.auth.User);
@@ -44,6 +45,10 @@ function App() {
         <Route
           path='/employees/:id'
           element={User ? <SingleEmployee /> : <Login />}
+        />
+        <Route
+          path='/employees/update/:id'
+          element={User ? <UpdateEmployee /> : <Login />}
         />
         <Route path='/tasks' element={User ? <Task /> : <Login />} />
         <Route

@@ -40,6 +40,27 @@ export const employeeApi = createApi({
       },
       invalidatesTags: ["Employee"],
     }),
+    updateEmployee: builder.mutation({
+      query(data) {
+        const { id, ...body } = data;
+        return {
+          url: `${id}`,
+          method: "PUT",
+          body,
+        };
+      },
+      invalidatesTags: ["Employee"],
+    }),
+    deleteEmployee: builder.mutation({
+      query(id) {
+        return {
+          url: `${id}`,
+          method: "DELETE",
+        };
+      },
+
+      invalidatesTags: ["Employee"],
+    }),
   }),
 });
 
@@ -50,4 +71,6 @@ export const {
   useGetSingleEmployeeQuery,
   useAddEmployeeMutation,
   useGetSearchEmployeesQuery,
+  useUpdateEmployeeMutation,
+  useDeleteEmployeeMutation,
 } = employeeApi;

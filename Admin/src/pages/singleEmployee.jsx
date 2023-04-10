@@ -126,13 +126,15 @@ const SingleEmployee = () => {
                         </Text>
                       </HStack>
                     </Box>
-                    <Button
-                      width={["20%", "20%", "15%", "12%", "8%"]}
-                      variant={"solid"}
-                      colorScheme='blue'
-                      fontSize={28}>
-                      <Icon as={FiEdit} />
-                    </Button>
+                    <Link to={`/employees/update/${data._id}`}>
+                      <Button
+                        width={["20%", "20%", "15%", "12%", "8%"]}
+                        variant={"solid"}
+                        colorScheme='blue'
+                        fontSize={28}>
+                        <Icon as={FiEdit} />
+                      </Button>
+                    </Link>
                   </Flex>
                   {/* Task */}
                   <Flex width={"100%"} flexDirection={"column"}>
