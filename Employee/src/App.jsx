@@ -25,7 +25,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Public />} />
+        <Route index element={User ? <Navigate to={"/dash"} /> : <Public />} />
         {/* <Route path="test" element={<Test />} /> */}
         {/* Protected routes */}
         <Route
