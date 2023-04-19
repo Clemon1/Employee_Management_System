@@ -69,8 +69,7 @@ const Home = () => {
         justifyContent={"center"}
         alignItems={"center"}
         bg={"#051724"}
-        padding={6}
-      >
+        padding={6}>
         <Flex
           width={"70%"}
           height={"fit-content"}
@@ -80,8 +79,7 @@ const Home = () => {
           justifyContent={"center"}
           alignItems={"center"}
           padding={4}
-          color={"#ffffff"}
-        >
+          color={"#ffffff"}>
           <form className='formBody1' onSubmit={registerForm}>
             <Text fontSize={"28px"} fontWeight={800}>
               Register
@@ -124,10 +122,15 @@ const Home = () => {
               fontSize={18}
               type='submit'
               fontWeight={600}
-              _hover={{ bg: "#009CF9" }}
-            >
+              _hover={{ bg: "#009CF9" }}>
               SignUp
             </Button>
+            <Text fontSize={17} textAlign={"center"}>
+              Have an account?{" "}
+              <Link to={"/login"} style={{ fontWeight: 500 }}>
+                login
+              </Link>
+            </Text>
           </form>
         </Flex>
       </Flex>
