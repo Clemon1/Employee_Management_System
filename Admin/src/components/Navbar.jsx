@@ -50,6 +50,7 @@ const Navbar = () => {
     borderRadius: "10px 28px",
     background: "rgba(0,186,199,.12)",
   };
+  const dispatch = useDispatch();
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search/${key}`);
@@ -239,14 +240,19 @@ const Navbar = () => {
                 </ListItem>
               </NavLink>
               <ListItem
-                onClick={() => dispatch(logOut())}
                 px={8}
                 py={2}
                 display={"flex"}
                 gap={1}
                 rounded={"10px 28px"}>
-                <Icon alignSelf={"center"} fontSize={"24px"} as={BiLogOut} />
-                LogOut
+                <Button
+                  onClick={() => dispatch(logOut())}
+                  width={"100%"}
+                  _hover={{}}
+                  bg={"inherit"}>
+                  <Icon alignSelf={"center"} fontSize={"24px"} as={BiLogOut} />
+                  LogOut
+                </Button>
               </ListItem>
             </UnorderedList>
           </VStack>

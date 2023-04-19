@@ -6,6 +6,7 @@ import {
   Icon,
   Divider,
   Text,
+  Button,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { BiHomeCircle, BiLogOut } from "react-icons/bi";
@@ -154,15 +155,15 @@ const Sidebar = ({ slide }) => {
             Settings
           </ListItem>
         </NavLink>
-        <ListItem
-          onClick={() => dispatch(logOut())}
-          px={8}
-          py={2}
-          display={"flex"}
-          gap={1}
-          rounded={"10px 28px"}>
-          <Icon alignSelf={"center"} fontSize={"24px"} as={BiLogOut} />
-          LogOut
+        <ListItem px={8} py={2} display={"flex"} gap={1} rounded={"10px 28px"}>
+          <Button
+            onClick={() => dispatch(logOut())}
+            width={"100%"}
+            _hover={{}}
+            bg={"inherit"}>
+            <Icon alignSelf={"center"} fontSize={"24px"} as={BiLogOut} />
+            LogOut
+          </Button>
         </ListItem>
       </UnorderedList>
     </VStack>
