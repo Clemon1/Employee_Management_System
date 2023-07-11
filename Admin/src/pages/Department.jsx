@@ -29,8 +29,7 @@ const Department = () => {
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
       <Box
-        width={["100%", "100%", "100%", "100%", "82%"]}
-        marginLeft={[0, 0, 0, 0, "243px"]}
+        width={["100%", "100%", "100%", "100%", "full"]}
         height={"fit-content"}
         bg={"#edf2f9"}>
         <Navbar />

@@ -7,6 +7,8 @@ import TaskData from "../features/task/TaskData";
 import TaskTable from "../features/task/TaskTable";
 import TaskReview from "../features/task/TaskReview";
 import "./dash.css";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../features/auth/authSlice";
 
 const Dashboard = () => {
   const {
@@ -19,7 +21,8 @@ const Dashboard = () => {
   const deviceWidth = window.innerWidth;
   // const deviceHeight = window.innerHeight;
 
-  const user = JSON.parse(localStorage.getItem("users"));
+  // const user = JSON.parse(localStorage.getItem("users"));
+  const user = useSelector(selectCurrentUser);
   let content;
   if (isSuccess) {
     const allTask = Object.values(task.entities);
@@ -30,26 +33,26 @@ const Dashboard = () => {
       table = <TaskTable task={allTask} perPage={6} />;
     }
     content = (
-      <div className="dashboard">
-        <div className="top-bar">
+      <div className='dashboard'>
+        <div className='top-bar'>
           <Welcome userId={user._id} />
           <Profile userId={user._id} />
         </div>
-        <div className="dashboard-main">
-          <div className="dashboard-main_left">
-            <div className="dashboard-main_left-top">
+        <div className='dashboard-main'>
+          <div className='dashboard-main_left'>
+            <div className='dashboard-main_left-top'>
               <TaskRow />
             </div>
-            <div className="dashboard-main_left-bottom">{table}</div>
+            <div className='dashboard-main_left-bottom'>{table}</div>
           </div>
-          <div className="dashboard-main_right">
-            <div className="dashboard-main_right-title">
+          <div className='dashboard-main_right'>
+            <div className='dashboard-main_right-title'>
               <h4>On Review</h4>
-              <div className="dashboard-main_right-count">
+              <div className='dashboard-main_right-count'>
                 {allTask.filter((task) => task.review === true).length}
               </div>
             </div>
-            <div className="dashboard-main_right-card">
+            <div className='dashboard-main_right-card'>
               {allTask
                 .filter((task) => task.review === true)
                 .map((task) => (

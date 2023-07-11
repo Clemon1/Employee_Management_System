@@ -13,12 +13,12 @@ const login = async (req, res) => {
     .exec();
   console.log(foundUser);
   if (!foundUser) {
-    return res.status(401).json({ message: "anauthorized" });
+    return res.status(401).json("anauthorized");
   }
 
   const match = await bcrypt.compare(password, foundUser.password);
 
-  if (!match) return res.status(401).json({ message: "bnauthorized" });
+  if (!match) return res.status(401).json("bnauthorized");
 
   const accessToken = jwt.sign(
     {
@@ -27,13 +27,13 @@ const login = async (req, res) => {
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "7d" }
+    { expiresIn: "7d" },
   );
 
   const refreshToken = jwt.sign(
     { email: foundUser.email },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: "7d" }
+    { expiresIn: "7d" },
   );
 
   // Create secure cookie with refresh token
@@ -78,11 +78,11 @@ const refresh = (req, res) => {
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "15m" }
+        { expiresIn: "15m" },
       );
 
       res.json({ accessToken });
-    })
+    }),
   );
 };
 

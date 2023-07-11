@@ -14,6 +14,7 @@ const taskRoutes = require("./routes/taskRoutes");
 const leaveRoute = require("./routes/leaveRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
 const payrollRoutes = require("./routes/payrollRoutes");
+const adminNotificationRoutes = require("./routes/adminNotification");
 
 // MongoDB database Connection
 mongoose.connect("mongodb://0.0.0.0:27017/opeDB");
@@ -34,6 +35,6 @@ app.use("/task", taskRoutes);
 app.use("/leave", leaveRoute);
 app.use("/attendance", attendanceRoutes);
 app.use("/payroll", payrollRoutes);
-
+app.use("/notification", adminNotificationRoutes);
 // Listen to PORT number
 app.listen(PORT, () => console.log(`Express app connected to port:${PORT}`));

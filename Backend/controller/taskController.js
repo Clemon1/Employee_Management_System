@@ -1,7 +1,7 @@
 const { Task } = require("../model/taskModel");
 const { Users } = require("../model/userModel");
 const { Employees } = require("../model/employeeModel");
-
+const sendNotifaction = require("../middleware/notification");
 // Getting all the task
 const getAllTask = async (req, res) => {
   try {
@@ -54,7 +54,7 @@ const employeeTask = async (req, res) => {
   try {
     const employeeId = req.params.id;
     const tasks = await Task.find({ employee: employeeId }).populate(
-      "employee"
+      "employee",
     );
     res.status(200).json(tasks);
   } catch (err) {
@@ -118,9 +118,20 @@ const createMany = async (req, res) => {
 const updateTask = async (req, res) => {
   try {
     const id = req.params.id;
-    const updateInfo = await Task.findByIdAndUpdate(id, {
-      $set: req.body,
+
+    const updateInfo = await Task.findByIdAndUpdate(id, req.body, {
+      new: true,
     });
+
+    const user = await Employees.findById(updateInfo.employee);
+    if (updateInfo.completion === "Completed") {
+      const notificationMessage = `${user.fullname} has completed assigned task`;
+      sendNotifaction({ message: notificationMessage });
+    } else if (updateInfo.completion === "Late Delivery") {
+      const notificationMessage = `${user.fullname} has delivered assigned task late`;
+      sendNotifaction({ message: notificationMessage });
+    }
+
     res.status(200).json(updateInfo);
   } catch (err) {
     res.status(500).json(err.message);
