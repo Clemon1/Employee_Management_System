@@ -17,11 +17,23 @@ const getAllTask = async (req, res) => {
           .exec());
     const tasks = await Task.find().populate("employee").exec();
     const countPending = await Task.find({ completion: "Pending" }).count();
+    const countProgress = await Task.find({
+      completion: "Started",
+    }).count();
     const countCompleted = await Task.find({ completion: "Completed" }).count();
+    const countLateDelivery = await Task.find({
+      completion: "Late Delivery",
+    }).count();
     const countTotalTask = await Task.find().count();
-    res
-      .status(200)
-      .json({ tasks, allTask, countPending, countCompleted, countTotalTask });
+    res.status(200).json({
+      tasks,
+      allTask,
+      countPending,
+      countCompleted,
+      countTotalTask,
+      countProgress,
+      countLateDelivery,
+    });
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -79,14 +91,8 @@ const empViewTask = async (req, res) => {
 const createTask = async (req, res) => {
   try {
     // Custom Validation
-    const {
-      title,
-      description,
-      dateAssigned,
-      dateToDeliver,
-      employee,
-      asignedBy,
-    } = req.body;
+    const { title, description, dateAssigned, dateToDeliver, employee } =
+      req.body;
     if (!title) return res.status(404).json("Title cannot be empty");
     if (!description)
       return res.status(404).json("Description cannot be empty");
@@ -95,7 +101,6 @@ const createTask = async (req, res) => {
     if (!dateToDeliver)
       return res.status(404).json("Date to deliver task must be assigned");
     if (!employee) return res.status(404).json("An employee must be assigned");
-    if (!asignedBy) return res.status(404).json("Assign By cannot be empty");
 
     const tasks = new Task(req.body);
     const newTask = await tasks.save();

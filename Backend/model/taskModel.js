@@ -10,17 +10,15 @@ const TaskSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    employee: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Employees",
-    },
-    asignedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Employees",
-    },
+    employee: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Employees",
+      },
+    ],
     completion: {
       type: String,
-      enum: ["Pending", "Completed", "Late Delivery", "Started"],
+      enum: ["Pending", "Started", "Completed", "Late Delivery"],
       default: "Pending",
     },
     reviewComment: {
@@ -46,7 +44,7 @@ const TaskSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Task = mongoose.model("Task", TaskSchema);

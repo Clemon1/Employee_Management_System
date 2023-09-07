@@ -11,6 +11,16 @@ import {
   Textarea,
   FormErrorMessage,
   FormHelperText,
+  TableContainer,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Icon,
+  Tbody,
+  Avatar,
+  Td,
+  Checkbox,
 } from "@chakra-ui/react";
 import { useAddTaskMutation } from "../features/TaskSlide";
 import { useGetAllEmployeesQuery } from "../features/employeeSlice";
@@ -18,29 +28,48 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 
 const CreateTask = () => {
-  const { data: Employee, isLoading } = useGetAllEmployeesQuery();
+  const [page, setPage] = useState(1);
+  const {
+    data: Employee,
+    isLoading,
+    isError,
+    isFetching,
+  } = useGetAllEmployeesQuery(page);
+  const totalPage = Math.ceil(Employee && Employee.totalPages);
+
   const [addTask] = useAddTaskMutation();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [employee, setEmployee] = useState("");
-  const [asignedBy, setAsignedBy] = useState("");
+  const [employee, setEmployee] = useState([]);
+
   const [priority, setPriority] = useState("");
   const [dateAssigned, setDateAssigned] = useState("");
   const [dateToDeliver, setDateToDeliver] = useState("");
   const toast = useToast();
   const navigate = useNavigate();
-  console.log(Employee);
+
   const body = {
     title,
     description,
     employee,
-    asignedBy,
+
     priority,
     dateAssigned,
     dateToDeliver,
   };
+  const handleCheckboxChange = (e) => {
+    const value = e.target.value;
+    if (e.target.checked) {
+      setEmployee([...employee, value]);
+    } else {
+      setEmployee(employee.filter((item) => item !== value));
+    }
+  };
+  console.log(body);
   const handleTask = async (e) => {
     e.preventDefault();
     try {
@@ -68,15 +97,19 @@ const CreateTask = () => {
   };
 
   return (
-    <Flex width={"100%"} height={"fit-content"}>
+    <Flex width={"100%"} height={"fit-content"} bg={"#edf2f9"}>
       <Sidebar />
       <Box
         width={["100%", "100%", "100%", "100%", "full"]}
         height={"fit-content"}
         bg={"#edf2f9"}>
         <Navbar />
-        <Flex width={"100%"} justify={"center"} height={"fit-content"}>
-          <Box width={"60%"} height={"100vh"} padding={5}>
+        <Flex
+          width={"100%"}
+          justify={"center"}
+          height={"fit-content"}
+          bg={"#edf2f9"}>
+          <Box width={"90%"} height={"fit-content"} padding={5}>
             <form onSubmit={handleTask}>
               <Box
                 width={"100%"}
@@ -101,36 +134,6 @@ const CreateTask = () => {
                 </Flex>
 
                 <Flex width={"100%"} gap={5} marginBottom={5}>
-                  <FormControl>
-                    <FormLabel fontSize={18}>Employee Assigned</FormLabel>
-                    <Select
-                      fontWeight={600}
-                      border={"2px #051724 solid !important"}
-                      placeholder='Select Employee'
-                      onChange={(e) => setEmployee(e.target.value)}>
-                      {Employee &&
-                        Employee.empAll.map((emp) => (
-                          <option fontWeight={600} value={emp._id}>
-                            {emp.fullname}
-                          </option>
-                        ))}
-                    </Select>
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel fontSize={18}>Assigned By:</FormLabel>
-                    <Select
-                      fontWeight={600}
-                      border={"2px #051724 solid !important"}
-                      placeholder='Select Assigner'
-                      onChange={(e) => setAsignedBy(e.target.value)}>
-                      {Employee &&
-                        Employee.empAll.map((emp) => (
-                          <option fontWeight={600} value={emp._id}>
-                            {emp.fullname}
-                          </option>
-                        ))}
-                    </Select>
-                  </FormControl>
                   <FormControl>
                     <FormLabel fontSize={18}>Priority:</FormLabel>
                     <Select
@@ -184,7 +187,115 @@ const CreateTask = () => {
                       }></Textarea>
                   </FormControl>
                 </Flex>
+                <Box
+                  width={"100%"}
+                  height={"80vh"}
+                  bg={"#ffffff"}
+                  padding={4}
+                  boxShadow={"lg"}
+                  rounded={4}>
+                  <Flex width={"100%"} justifyContent={"space-between"}>
+                    <Text color={"#051724"} fontSize={23} fontWeight={800}>
+                      Select Employees
+                    </Text>
+                  </Flex>
 
+                  <TableContainer height={"78%"} color={"#06253b"}>
+                    <Table
+                      height={"fit-content"}
+                      variant='striped'
+                      size={"sm"}
+                      colorScheme={"messenger"}>
+                      <Thead>
+                        <Tr>
+                          <Th>Select</Th>
+                          <Th>Profile Picture</Th>
+                          <Th>Full Name</Th>
+                          <Th>Email</Th>
+                          <Th>Department</Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        {isError ? (
+                          <Tr>
+                            <Text textAlign={"center"} fontSize={18}>
+                              Error fetching Employee
+                            </Text>
+                          </Tr>
+                        ) : (
+                          Employee &&
+                          Employee.allEmployees.map((employee) => (
+                            <Tr key={employee._id}>
+                              <Td>
+                                <Checkbox
+                                  colorScheme='green'
+                                  value={employee._id}
+                                  onChange={handleCheckboxChange}
+                                />
+                              </Td>
+                              <Td>
+                                <Avatar
+                                  src={`http://localhost:5000/empProfilePics/${employee.profile}`}
+                                  name={employee.fullname}
+                                />
+                              </Td>
+                              <Td>{employee.fullname}</Td>
+                              <Td>{employee.email}</Td>
+                              <Td>{employee.department.name}</Td>
+
+                              <Td> </Td>
+                            </Tr>
+                          ))
+                        )}
+                      </Tbody>
+                    </Table>
+                  </TableContainer>
+
+                  <Flex
+                    width={"100%"}
+                    justifyContent={"flex-end"}
+                    gap={7}
+                    padding={2}
+                    alignItems={"center"}>
+                    {" "}
+                    {page === 1 ? (
+                      <Button rounded={100} width={30} disabled>
+                        <Icon as={IoIosArrowBack} />
+                      </Button>
+                    ) : (
+                      <Button
+                        bg={"#051724"}
+                        rounded={100}
+                        width={30}
+                        color={"#ffffff"}
+                        _hover={{ bg: "#051724 !important" }}
+                        onClick={() => setPage(page - 1)}
+                        isLoading={isFetching}>
+                        <Icon as={IoIosArrowBack} />
+                      </Button>
+                    )}
+                    <Text>
+                      {page} / {totalPage}
+                    </Text>
+                    {page === totalPage ? (
+                      <Button rounded={100} width={30} disabled>
+                        {" "}
+                        <Icon as={IoIosArrowForward} />
+                      </Button>
+                    ) : (
+                      <Button
+                        bg={"#051724"}
+                        rounded={100}
+                        width={30}
+                        color={"#ffffff"}
+                        _hover={{ bg: "#051724 !important" }}
+                        onClick={() => setPage(page + 1)}
+                        isLoading={isFetching}>
+                        <Icon as={IoIosArrowForward} />
+                      </Button>
+                    )}
+                  </Flex>
+                </Box>
                 <Button
                   bg={"#051724"}
                   color={"#ffffff"}

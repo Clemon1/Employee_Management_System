@@ -13,8 +13,7 @@ import LeavePage from "./features/leave/LeavePage";
 import LeaveForm from "./features/leave/LeaveForm";
 import Leave from "./features/leave/Leave";
 import { Navigate } from "react-router-dom";
-import Protected from "./Protected";
-import Test from "./Test";
+
 import { selectCurrentUser } from "./features/auth/authSlice";
 import { useSelector } from "react-redux";
 
@@ -24,9 +23,8 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route index element={User ? <Navigate to={"/dash"} /> : <Public />} />
-        {/* <Route path="test" element={<Test />} /> */}
-        {/* Protected routes */}
+        <Route index element={User ? <Dashboard /> : <Public />} />
+
         <Route
           path='dash'
           element={User ? <DashLayout /> : <Navigate to={"/"} />}>

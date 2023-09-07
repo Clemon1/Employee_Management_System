@@ -37,7 +37,7 @@ const Sidebar = ({ slide }) => {
       <VStack
         width={["40%", "40%", "33%", "20%", " 18%"]}
         height={"100%"}
-        bg={"#051724"}
+        bg={"#000814"}
         position={"fixed"}
         zIndex={1000}
         transform={slide ? "translateX(309px)" : "translateX(0px)"}

@@ -338,11 +338,15 @@ const Dashboard = ({ slide }) => {
                 position={"relative"}
                 top={0}
                 translateX={"-50%"}
-                right={"50%"}
+                right={"54%"}
                 flexDirection={"column"}
                 zIndex={"2000 !important"}
                 gap={4}>
-                <Flex gap={3} justifyContent={"center"} alignItems={"center"}>
+                <Flex
+                  width={"190%"}
+                  gap={3}
+                  justifyContent={"center"}
+                  alignItems={"center"}>
                   <Image
                     borderRadius='full'
                     boxSize='60px'
@@ -357,7 +361,12 @@ const Dashboard = ({ slide }) => {
                     {employee && employee.findMale}
                   </Text>
                 </Flex>
-                <Flex gap={3} justifyContent={"center"} alignItems={"center"}>
+
+                <Flex
+                  width={"190%"}
+                  gap={3}
+                  justifyContent={"center"}
+                  alignItems={"center"}>
                   <Image
                     borderRadius='full'
                     boxSize='60px'

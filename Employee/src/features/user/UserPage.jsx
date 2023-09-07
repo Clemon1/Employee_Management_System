@@ -8,14 +8,11 @@ import { selectCurrentUser } from "../auth/authSlice";
 
 const UserPage = () => {
   const navigate = useNavigate();
-  const [sendLogout, { isLoading, isSuccess }] = useSendLogoutMutation();
-  // const user = JSON.parse(localStorage.getItem("users"));
+  const [sendLogout, { isLoading }] = useSendLogoutMutation();
+
   const user = useSelector(selectCurrentUser);
 
   // console.log(user);
-  useEffect(() => {
-    if (isSuccess) navigate("/");
-  }, [isSuccess, navigate]);
 
   const content = (
     <div className='userPage'>
