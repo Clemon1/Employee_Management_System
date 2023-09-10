@@ -15,7 +15,7 @@ import Jobs from "./pages/Attendance";
 import Department from "./pages/Department";
 import Leave from "./pages/Leave";
 import Settings from "./pages/Settings";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CreateEmployee from "./pages/createEmployee";
 import Create_Department from "./pages/createDepartment";
 import SingleEmployee from "./pages/singleEmployee";
@@ -26,10 +26,25 @@ import Search from "./pages/Search";
 import ErrorPage from "./pages/404";
 import SingleLeave from "./pages/singleLeave";
 import UpdateEmployee from "./pages/updateEmployee";
+import { useEffect } from "react";
+import { logOut } from "./features/authSlice";
 
 function App() {
   const User = useSelector((state) => state.auth.User);
-
+  const dispatch = useDispatch();
+  // Auto LogOut
+  useEffect(() => {
+    let elapsedTime = 0;
+    const autoLogut = setInterval(() => {
+      elapsedTime++;
+      let ms = 60 * 60 * 1000; // 1 hour
+      if (elapsedTime > ms) {
+        dispatch(logOut());
+        console.log("LogOut");
+        clearInterval(autoLogut);
+      }
+    }, 1000);
+  }, [dispatch, logOut]);
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
