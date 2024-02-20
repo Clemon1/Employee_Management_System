@@ -43,6 +43,9 @@ if (cluster.isMaster) {
   app.use(bodyParser.json());
   app.use(express.static("uploads"));
   // Routes
+  app.get("/", (req, res) => {
+    res.send("WOrking app");
+  });
   app.use("/auth", authRoutes);
   app.use("/employee", employeeRoutes);
   app.use("/employee/auth", employeeAuthRoutes);
