@@ -55,7 +55,10 @@ const Login = () => {
 
   return (
     <Flex width={"100%"} height={"100vh"} justifyContent bg={"#edf2f9"}>
-      <Box width={"50%"} height={"100%"}>
+      <Box
+        width={"50%"}
+        height={"100%"}
+        display={["none", "none", "none", "none", "block"]}>
         <Image
           width={"100%"}
           height={"100%"}
@@ -64,24 +67,28 @@ const Login = () => {
         />
       </Box>
       <Flex
-        width={"50%"}
+        width={["100%", "100%", "100%", "100%", "50%"]}
         height={"100%"}
         justifyContent={"center"}
         alignItems={"center"}
         bg={"#051724"}
-        padding={6}
-      >
+        padding={6}>
         <Flex
-          width={"70%"}
-          height={"60%"}
+          width={["100%", "100%", "100%", "100%", "70%"]}
+          height={[
+            "fit-content",
+            "fit-content",
+            "fit-content",
+            "fit-content",
+            "60%",
+          ]}
           border={"2px solid #3B4856"}
           rounded={20}
           flexDirection={"column"}
           justifyContent={"center"}
           alignItems={"center"}
           padding={4}
-          color={"#ffffff"}
-        >
+          color={"#ffffff"}>
           <form className='formBody1' onSubmit={handleLogin}>
             <Text fontSize={"28px"} fontWeight={800}>
               Login
@@ -113,10 +120,15 @@ const Login = () => {
               fontSize={18}
               fontWeight={600}
               type='submit'
-              _hover={{ bg: "#009CF9" }}
-            >
+              _hover={{ bg: "#009CF9" }}>
               Login
             </Button>
+            <Text fontSize={17} textAlign={"center"}>
+              Don't have an account?{" "}
+              <Link to={"/"} style={{ fontWeight: 500 }}>
+                Register
+              </Link>
+            </Text>
           </form>
         </Flex>
       </Flex>

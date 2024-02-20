@@ -12,6 +12,7 @@ const {
   searchEmp,
   updateEmployee,
   deleteEmployee,
+  recommendEMp,
 } = require("../controller/employeeController");
 // const a = require("../uploads/empProfilePics");
 
@@ -40,6 +41,9 @@ router.get("/count", countEmployees);
 
 // Get single Employee
 router.get("/:id", getSingleEmployees);
+
+// recommendation
+router.get("/recommend/:id", recommendEMp);
 //Create new Employee
 router.post("/create", upload.single("profile"), createEmployee);
 

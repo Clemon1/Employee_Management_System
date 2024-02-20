@@ -3,6 +3,9 @@ const bcrypt = require("bcrypt");
 const { Task } = require("../model/taskModel");
 const fs = require("fs");
 const { profile } = require("console");
+const {
+  recommendTasksForEmployee,
+} = require("../middleware/taskRecommendation");
 
 // Get all Employees
 
@@ -175,10 +178,24 @@ const deleteEmployee = async (req, res) => {
   }
 };
 
+// Recommend task for employees
+const recommendEMp = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const recommendations = await recommendTasksForEmployee(id);
+    res.status(200).json(recommendations);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   getAllEmployees,
   getSingleEmployees,
   empViewTask,
+  recommendEMp,
   createEmployee,
   searchEmp,
   loginEmployee,

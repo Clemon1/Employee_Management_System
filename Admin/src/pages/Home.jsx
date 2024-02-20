@@ -55,7 +55,10 @@ const Home = () => {
 
   return (
     <Flex width={"100%"} height={"100vh"} justifyContent bg={"#edf2f9"}>
-      <Box width={"50%"} height={"100%"}>
+      <Box
+        width={"50%"}
+        display={["none", "none", "none", "none", "block"]}
+        height={"100%"}>
         <Image
           width={"100%"}
           height={"100%"}
@@ -64,14 +67,14 @@ const Home = () => {
         />
       </Box>
       <Flex
-        width={"50%"}
+        width={["100%", "100%", "100%", "100%", "50%"]}
         height={"100%"}
         justifyContent={"center"}
         alignItems={"center"}
         bg={"#051724"}
         padding={6}>
         <Flex
-          width={"70%"}
+          width={["100%", "100%", "100%", "100%", "70%"]}
           height={"fit-content"}
           border={"2px solid #3B4856"}
           rounded={20}

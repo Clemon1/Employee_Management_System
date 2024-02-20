@@ -19,6 +19,7 @@ import { useParams } from "react-router-dom";
 import {
   useGetSingleEmployeeQuery,
   useGetTaskEmployeeQuery,
+  useRecommendTaskEmpQuery,
 } from "../features/employeeSlice";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
@@ -31,7 +32,8 @@ const SingleEmployee = () => {
   const { id } = useParams();
   const { data, isLoading, isError } = useGetSingleEmployeeQuery(id);
   const { data: task } = useGetTaskEmployeeQuery(id);
-  console.log(task);
+  const { data: recommend } = useRecommendTaskEmpQuery(id);
+
   return (
     <Flex width={"100%"} height={"fit-content"}>
       <Sidebar />
@@ -192,6 +194,25 @@ const SingleEmployee = () => {
                                     {task.completion}
                                   </Badge>
                                 )}
+                                {task.completion === "Started" && (
+                                  <Badge
+                                    rounded={5}
+                                    p={1}
+                                    variant='solid'
+                                    colorScheme='cyan'>
+                                    {task.completion}
+                                  </Badge>
+                                )}
+
+                                {task.completion === "Late Delivery" && (
+                                  <Badge
+                                    rounded={5}
+                                    p={1}
+                                    variant='solid'
+                                    colorScheme='red'>
+                                    {task.completion}
+                                  </Badge>
+                                )}
                               </Flex>
                             </CardBody>
                           </Card>
@@ -213,6 +234,99 @@ const SingleEmployee = () => {
               )}
             </Flex>
           </Box>
+        </Flex>
+        <Flex px={0} width={"100%"} flexDirection={"column"} height={"100vh"}>
+          <Flex
+            px={5}
+            width={"100%"}
+            height={"fit-content"}
+            flexDirection={"column"}>
+            <Box width={"full"} background={"#ffffff"} padding={8}>
+              <Text fontSize={22} fontWeight={700} color={"#051724"}>
+                Recommended Task for {data && data.fullname}
+              </Text>
+            </Box>
+            <Flex
+              padding={8}
+              width={"100%"}
+              flexWrap={"wrap"}
+              background={"#ffffff"}
+              height={"fit-content"}
+              gap={2}
+              justifyContent={"flex-start"}>
+              {recommend && recommend <= 0 && (
+                <>
+                  <Text fontSize={18} fontWeight={400} color={"#051724"}>
+                    No recommended task yet.
+                  </Text>
+                </>
+              )}
+              {recommend &&
+                recommend.map((r) => (
+                  <>
+                    {r.tasks.map((task) => (
+                      <Card
+                        key={task._id}
+                        Card
+                        width={"16.8rem"}
+                        rounded={"lg"}
+                        bg={"#ffffff"}
+                        boxShadow={"lg"}>
+                        <CardBody>
+                          <Text
+                            noOfLines={[1]}
+                            fontSize={18}
+                            marginBottom={3}
+                            fontWeight={600}>
+                            {task.title}
+                          </Text>
+
+                          <Flex width={"100%"}>
+                            {task.completion === "Pending" && (
+                              <Badge
+                                rounded={5}
+                                p={1}
+                                variant='solid'
+                                colorScheme='blue'>
+                                {task.completion}
+                              </Badge>
+                            )}
+                            {task.completion === "Completed" && (
+                              <Badge
+                                rounded={5}
+                                p={1}
+                                variant='solid'
+                                colorScheme='green'>
+                                {task.completion}
+                              </Badge>
+                            )}
+                            {task.completion === "Started" && (
+                              <Badge
+                                rounded={5}
+                                p={1}
+                                variant='solid'
+                                colorScheme='cyan'>
+                                {task.completion}
+                              </Badge>
+                            )}
+
+                            {task.completion === "Late Delivery" && (
+                              <Badge
+                                rounded={5}
+                                p={1}
+                                variant='solid'
+                                colorScheme='red'>
+                                {task.completion}
+                              </Badge>
+                            )}
+                          </Flex>
+                        </CardBody>
+                      </Card>
+                    ))}
+                  </>
+                ))}
+            </Flex>
+          </Flex>
         </Flex>
       </Box>
     </Flex>

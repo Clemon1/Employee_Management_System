@@ -25,6 +25,11 @@ export const employeeApi = createApi({
       providesTags: ["Employee"],
     }),
     // Get Single Employee
+    recommendTaskEmp: builder.query({
+      query: (id) => `recommend/${id}`,
+      providesTags: ["Employee"],
+    }),
+    // Get Single Employee
     getTaskEmployee: builder.query({
       query: (id) => `/employeeTask/${id}`,
       providesTags: ["Employee"],
@@ -68,6 +73,7 @@ export const {
   useGetAllEmployeesQuery,
   useCountEmployeeQuery,
   useGetTaskEmployeeQuery,
+  useRecommendTaskEmpQuery,
   useGetSingleEmployeeQuery,
   useAddEmployeeMutation,
   useGetSearchEmployeesQuery,
