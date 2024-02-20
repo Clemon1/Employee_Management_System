@@ -17,7 +17,7 @@ const payrollRoutes = require("./routes/payrollRoutes");
 const adminNotificationRoutes = require("./routes/adminNotification");
 
 // MongoDB database Connection
-mongoose.connect("mongodb://0.0.0.0:27017/opeDB");
+mongoose.connect(`${process.env.mongoURL}`);
 const db = mongoose.connection;
 db.on("error", (err) => console.log("Error connecting to database"));
 db.once("open", () => console.log("Connected to DB"));
